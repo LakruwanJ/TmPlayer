@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.player">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#openfile" text="Open file" />
+                        <Menu mnemonicParsing="false" text="Resent list">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="1" />
+                                      <MenuItem mnemonicParsing="false" text="2" />
+                              <MenuItem mnemonicParsing="false" text="3" />
+                              <MenuItem mnemonicParsing="false" text="4" />
+                              <MenuItem mnemonicParsing="false" text="5" />
+                          </items>
+                        </Menu>
+                                <MenuItem mnemonicParsing="false" text="Exit" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Start again" />
+                                <MenuItem mnemonicParsing="false" text="Repeat " />
+                        <MenuItem mnemonicParsing="false" onAction="#stop" text="Stop" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" text="Volume up" />
+                                <MenuItem mnemonicParsing="false" text="Volume down" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed up" />
+                                <MenuItem mnemonicParsing="false" onAction="#sNomal" text="Norml speed" />
+                                <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed down" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" text="Take screenshot" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Option">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Admin panel" />
+                                <MenuItem mnemonicParsing="false" text="Mini view" />
+                                <MenuItem mnemonicParsing="false" text="Playlist" />
+                                <MenuItem mnemonicParsing="false" text="Secret user" />
+                                <MenuItem mnemonicParsing="false" text="Only video mode" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" text="After shutdown" />
+                                <MenuItem mnemonicParsing="false" text="After sleep" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About player" />
+                                <MenuItem mnemonicParsing="false" text="Special option" />
+                                <MenuItem mnemonicParsing="false" text="Admin mode" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="188.0">
+               <children>
+                  <Label fx:id="mode" text=" " textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="400.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label fx:id="status" text=" " textFill="#0f9d58">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="name" text=" " textFill="#0f9d58">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox alignment="BOTTOM_CENTER" layoutY="602.0" prefHeight="33.0" prefWidth="100.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0">
+            <children>
+                <Label fx:id="nowtime" alignment="CENTER" prefHeight="26.0" prefWidth="97.0" text="--:--" textFill="#0f9d58" wrapText="true">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox alignment="BOTTOM_CENTER" layoutX="900.0" layoutY="602.0" prefHeight="33.0" prefWidth="100.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label fx:id="fulltime" alignment="CENTER" prefHeight="26.0" prefWidth="97.0" text="--:--" textFill="#0f9d58" wrapText="true">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <AnchorPane layoutX="100.0" layoutY="602.0" prefHeight="33.0" prefWidth="800.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+         <children>
+            <JFXSlider fx:id="playbar" layoutX="260.0" layoutY="12.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+         </children>
+        </AnchorPane>
+        <AnchorPane layoutY="39.0" prefHeight="563.0" prefWidth="1000.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+         <children>
+            <MediaView fx:id="play" layoutX="400.0" layoutY="182.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
+         </children>
+        </AnchorPane>
+      <BorderPane layoutY="636.0" prefHeight="45.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <right>
+              <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <JFXButton text="|&lt;)" />
+                  <JFXSlider fx:id="soundbar" />
+                      <Label fx:id="vlevel" text="Label" textFill="#0f9d58">
+                          <font>
+                              <Font size="17.0" />
+                          </font>
+                      </Label>
+                  </children>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
+              </HBox>
+         </right>
+         <left>
+              <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <children>
+                      <JFXButton onAction="#openfile" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/open.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton onAction="#stop" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/stop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/re.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+         </left>
+         <center>
+              <HBox alignment="CENTER" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <JFXButton text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/ba.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                      <JFXButton onAction="#back10" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/bac.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                      <JFXButton onAction="#play" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton onAction="#pause" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/pos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                      <JFXButton onAction="#skip10" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/for.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/fo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  </children>
+              </HBox>
+         </center>
+      </BorderPane>
+    </children>
+</AnchorPane>
