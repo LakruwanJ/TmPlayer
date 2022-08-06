@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="286.0" layoutY="192.0" text="tussi" />
-      <Label layoutX="141.0" layoutY="157.0" text="Label" />
+      <HBox prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" text="Tm Player" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="75.0" prefHeight="66.0" prefWidth="284.0">
+         <children>
+            <Label text="User Name" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField />
+            <Label text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="142.0" prefHeight="58.0" prefWidth="284.0">
+         <children>
+            <Label text="password" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <PasswordField />
+            <Label text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="200.0" prefHeight="49.0" prefWidth="600.0">
+         <children>
+            <Label text="Error Name" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="250.0" prefHeight="58.0" prefWidth="113.0">
+         <children>
+            <JFXButton text="Back" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <HBox layoutX="126.0" layoutY="257.0" prefHeight="50.0" prefWidth="114.0">
+         <children>
+            <JFXButton prefHeight="40.0" prefWidth="78.0" text="Reset" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <HBox layoutY="286.0" prefHeight="114.0" prefWidth="255.0">
+         <children>
+            <Label text="Forget user name or PassWord" textFill="#0f9d58">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="240.0" layoutY="257.0" prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <JFXButton text="Login" textFill="#0f9d58">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <JFXButton layoutX="274.0" layoutY="296.0" text="Change" textFill="#0f9d58">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <HBox layoutX="452.0" layoutY="100.0" prefHeight="100.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
