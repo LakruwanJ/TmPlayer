@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView144p">
+<AnchorPane minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView144p">
    <children>
       <JFXButton layoutX="425.0" layoutY="1.0" prefHeight="26.0" prefWidth="54.0" />
-      <JFXButton layoutX="425.0" layoutY="444.0" prefHeight="15.0" prefWidth="17.0" />
-      <JFXButton layoutX="452.0" layoutY="444.0" prefHeight="26.0" prefWidth="24.0" />
-      <Slider layoutY="451.0" prefHeight="26.0" prefWidth="426.0" />
+      <JFXButton layoutX="426.0" layoutY="331.0" prefHeight="15.0" prefWidth="17.0" />
+      <JFXButton layoutX="454.0" layoutY="331.0" prefHeight="26.0" prefWidth="24.0" />
+      <Slider layoutY="332.0" prefHeight="26.0" prefWidth="426.0" />
       <MediaView fitHeight="200.0" fitWidth="200.0" layoutY="8.0" />
    </children>
 </AnchorPane>
