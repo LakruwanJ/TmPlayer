@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 
 <AnchorPane prefHeight="240.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView240p">
    <children>
@@ -10,5 +11,6 @@
       <JFXButton layoutX="297.0" layoutY="207.0" prefHeight="34.0" prefWidth="24.0" />
       <JFXButton layoutX="279.0" layoutY="206.0" prefHeight="34.0" prefWidth="24.0" />
       <Slider layoutX="3.0" layoutY="220.0" prefHeight="14.0" prefWidth="281.0" />
+      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="3.0" layoutY="14.0" />
    </children>
 </AnchorPane>
