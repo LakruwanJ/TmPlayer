@@ -1,11 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Playlist">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="286.0" layoutY="192.0" text="Sale" />
+      <VBox layoutX="6.0" layoutY="46.0" prefHeight="385.0" prefWidth="340.0">
+         <children>
+            <HBox prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="340.0" text="Video Name" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV1" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV2" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV3" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV3" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV4" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV4" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV5" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV5" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="36.0" prefWidth="280.0">
+               <children>
+                  <Label fx:id="plV6" prefHeight="35.0" prefWidth="340.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV7" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV7" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV8" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV8" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV9" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV9" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="plV10" prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label fx:id="plV10" prefHeight="35.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="640.0">
+         <children>
+            <Label />
+            <Label prefHeight="45.0" prefWidth="160.0" text="PLAY LISTS" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="417.0" layoutY="45.0" prefHeight="386.0" prefWidth="226.0">
+         <children>
+            <HBox prefHeight="35.0" prefWidth="340.0">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="340.0" text="Label" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="54.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Play">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="432.0" prefHeight="45.0" prefWidth="640.0">
+         <children>
+            <Label prefHeight="45.0" prefWidth="100.0" text="BACK" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
