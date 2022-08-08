@@ -45,7 +45,7 @@ public class player implements Initializable {
     private MediaPlayer player;
 
 
-    //open file
+    /*/open file
     public void openfile(ActionEvent event){
         //choose
         FileChooser file = new FileChooser();
@@ -67,6 +67,45 @@ public class player implements Initializable {
 
             player.play();
         }
+    }
+
+    */
+
+    //grt path
+    public void getPath(){
+        //choose
+        FileChooser file = new FileChooser();
+        File file1 = file.showOpenDialog(null);
+
+        //
+        path = file1.toURI().toString();
+    }
+
+    //load video
+    public void loadVideo(){
+        if(path != null){
+            Media media = new Media(path);
+            player = new MediaPlayer(media);
+            play.setMediaPlayer(player);
+
+            final DoubleProperty width = play.fitWidthProperty();
+            final DoubleProperty height = play.fitHeightProperty();
+
+            width.bind(Bindings.selectDouble(play.sceneProperty(), "width"));
+            height.bind(Bindings.selectDouble(play.sceneProperty(), "height"));
+
+            player.play();
+        }
+    }
+
+    //open file
+    public void openfile(ActionEvent event){
+        getPath();
+        loadVideo();
+    }
+
+    public void rep(ActionEvent event){
+        loadVideo();
     }
 
     //play
