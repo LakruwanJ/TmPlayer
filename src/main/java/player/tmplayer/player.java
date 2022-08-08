@@ -2,7 +2,10 @@ package player.tmplayer;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXSlider;
@@ -12,10 +15,12 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 public class player implements Initializable {
 
@@ -83,7 +88,7 @@ public class player implements Initializable {
 
     //load video
     public void loadVideo(){
-        if(path != null){
+        if(path != null) {
             Media media = new Media(path);
             player = new MediaPlayer(media);
             play.setMediaPlayer(player);
@@ -95,7 +100,39 @@ public class player implements Initializable {
             height.bind(Bindings.selectDouble(play.sceneProperty(), "height"));
 
             player.play();
+
+            //slider
+            player.currentTimeProperty().addListener(new ChangeListener<javafx.util.Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends javafx.util.Duration> observable, javafx.util.Duration oldValue, javafx.util.Duration newValue) {
+                    playbar.setValue(newValue.toSeconds());
+                }
+            });
+
+            playbar.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    player.seek(javafx.util.Duration.seconds(playbar.getValue()));
+                }
+            });
+
+            playbar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    player.seek(javafx.util.Duration.seconds(playbar.getValue()));
+                }
+            });
+
+            player.setOnReady(new Runnable() {
+                @Override
+                public void run() {
+                    Duration total = media.getDuration();
+                    playbar.setMax(total.toSeconds());
+                }
+            });
         }
+
+
     }
 
     //open file
