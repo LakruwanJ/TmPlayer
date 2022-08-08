@@ -104,7 +104,13 @@ public class player implements Initializable {
         loadVideo();
     }
 
+    //repeat
     public void rep(ActionEvent event){
+        loadVideo();
+    }
+
+    //start again
+    public void sAgain(ActionEvent event){
         loadVideo();
     }
 
