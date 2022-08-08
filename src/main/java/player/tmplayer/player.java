@@ -141,7 +141,7 @@ public class player implements Initializable {
 
     //speed normal
     public void sNomal(ActionEvent event){
-        player.setRate(2);
+        player.setRate(1);
     }
 
     //skip and back
