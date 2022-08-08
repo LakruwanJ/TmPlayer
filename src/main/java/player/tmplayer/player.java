@@ -144,15 +144,27 @@ public class player implements Initializable {
         player.setRate(2);
     }
 
-    //+10
-    public void skip10(ActionEvent event){
-        player.seek(player.getCurrentTime().add(javafx.util.Duration.seconds(10)));
+    //skip and back
+    public void skipAndBack(int t){
+        player.seek(player.getCurrentTime().add(javafx.util.Duration.seconds(t)));
     }
-
     //-10
     public void back10(ActionEvent event){
-        player.seek(player.getCurrentTime().add(javafx.util.Duration.seconds(-10)));
+        skipAndBack(-10);
     }
+    //-60
+    public void back60(ActionEvent event){
+        skipAndBack(-60);
+    }
+    //+10
+    public void skip10(ActionEvent event){
+        skipAndBack(10);
+    }
+    //+60
+    public void skip60(ActionEvent event){
+        skipAndBack(60);
+    }
+
 
 
     @Override

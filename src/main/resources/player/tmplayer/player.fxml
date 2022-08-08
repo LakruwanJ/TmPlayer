@@ -184,7 +184,7 @@
          <center>
               <HBox alignment="CENTER" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                   <children>
-                      <JFXButton text=" ">
+                      <JFXButton onAction="#back60" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -225,7 +225,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton text=" ">
+                  <JFXButton onAction="#skip60" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
