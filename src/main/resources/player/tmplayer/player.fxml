@@ -55,9 +55,9 @@
                                 <MenuItem mnemonicParsing="false" text="Volume up" />
                                 <MenuItem mnemonicParsing="false" text="Volume down" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                                <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed up" />
+                                <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed up" />
                                 <MenuItem mnemonicParsing="false" onAction="#sNomal" text="Norml speed" />
-                                <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed down" />
+                                <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed down" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                                 <MenuItem mnemonicParsing="false" text="Take screenshot" />
                             </items>
