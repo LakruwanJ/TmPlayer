@@ -1,5 +1,7 @@
 package player.tmplayer;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -128,8 +130,18 @@ public class player implements Initializable {
                 public void run() {
                     Duration total = media.getDuration();
                     playbar.setMax(total.toSeconds());
+
                 }
             });
+
+            soundbar.setValue(player.getVolume()*100);
+            soundbar.valueProperty().addListener(new InvalidationListener() {
+                @Override
+                public void invalidated(Observable observable) {
+                    player.setVolume(soundbar.getValue()/100);
+                }
+            });
+
         }
 
 
