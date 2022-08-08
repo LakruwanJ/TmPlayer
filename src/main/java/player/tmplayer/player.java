@@ -102,46 +102,56 @@ public class player implements Initializable {
     public void openfile(ActionEvent event){
         getPath();
         loadVideo();
+        mode.setText("Playing");
     }
 
     //repeat
     public void rep(ActionEvent event){
         loadVideo();
+        mode.setText("Playing");
     }
 
     //start again
     public void sAgain(ActionEvent event){
         loadVideo();
+        mode.setText("Playing");
     }
 
     //play
     public void play(ActionEvent event){
         player.play();
+        mode.setText("Playing");
     }
 
     //stop
     public void stop(ActionEvent event){
         player.stop();
+        mode.setText("Stoped");
     }
 
     //pause
     public void pause(ActionEvent event){
         player.pause();
+        mode.setText("Pause");
     }
 
     //slow
     public void slow(ActionEvent event){
         player.setRate(0.5);
+        mode.setText("Speed x0.5");
     }
 
     //fast
     public void fast(ActionEvent event){
         player.setRate(2);
+        mode.setText("Speed x2");
     }
 
     //speed normal
     public void sNomal(ActionEvent event){
         player.setRate(1);
+        mode.setText("Playing");
+
     }
 
     //skip and back
@@ -151,6 +161,7 @@ public class player implements Initializable {
     //-10
     public void back10(ActionEvent event){
         skipAndBack(-10);
+
     }
     //-60
     public void back60(ActionEvent event){
