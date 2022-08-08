@@ -50,9 +50,10 @@ public class player implements Initializable {
 
     private String path;
     private MediaPlayer player;
+    playTime Slidertime = new playTime();
 
 
-    /*/open file
+    /* open file
     public void openfile(ActionEvent event){
         //choose
         FileChooser file = new FileChooser();
@@ -102,15 +103,17 @@ public class player implements Initializable {
             height.bind(Bindings.selectDouble(play.sceneProperty(), "height"));
 
             player.play();
+            vlevel.setText("100");
 
             //slider
             player.currentTimeProperty().addListener(new ChangeListener<javafx.util.Duration>() {
                 @Override
-                public void changed(ObservableValue<? extends javafx.util.Duration> observable, javafx.util.Duration oldValue, javafx.util.Duration newValue) {
+                public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
                     playbar.setValue(newValue.toSeconds());
+                    nowtime.setText(Slidertime.Time(newValue.toSeconds()));
+                    fulltime.setText(Slidertime.Time(player.getTotalDuration().toSeconds()));
                 }
             });
-
             playbar.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -139,6 +142,9 @@ public class player implements Initializable {
                 @Override
                 public void invalidated(Observable observable) {
                     player.setVolume(soundbar.getValue()/100);
+                    //set value to label
+                    int i = (int) (soundbar.getValue());
+                    vlevel.setText(String.valueOf(i));
                 }
             });
 
