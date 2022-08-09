@@ -17,9 +17,9 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.player">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" styleClass="nomal" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.player">
     <children>
-        <AnchorPane layoutY="39.0" prefHeight="563.0" prefWidth="1000.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+        <AnchorPane layoutY="39.0" prefHeight="563.0" prefWidth="1000.0" styleClass="playarea" stylesheets="@player.css" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -28,9 +28,9 @@
             </HBox>
          </children>
         </AnchorPane>
-        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
+        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <MenuBar>
+                <MenuBar prefHeight="39.0" prefWidth="253.0" stylesheets="@player.css">
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
@@ -84,9 +84,14 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-            <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="188.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="140.0">
                <children>
-                  <Label fx:id="mode" text=" " textFill="#0f9d58">
+                  <Label fx:id="status1" text="     | " textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mode" alignment="CENTER" prefHeight="26.0" prefWidth="85.0" textFill="#0f9d58" wrapText="true">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -95,13 +100,17 @@
             </HBox>
             </children>
         </HBox>
-        <HBox alignment="CENTER_LEFT" layoutX="400.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <Label fx:id="status" text=" " textFill="#0f9d58">
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="35.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="0.0">
+         <children>
+                <Label fx:id="status" text="|   " textFill="#0f9d58">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
+         </children>
+      </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="400.0" prefHeight="39.0" prefWidth="565.0" AnchorPane.leftAnchor="435.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
                 <Label fx:id="name" text=" " textFill="#0f9d58">
                     <font>
                         <Font size="17.0" />
@@ -139,7 +148,7 @@
          <right>
               <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                   <children>
-                  <JFXButton onAction="#skip60" text=" ">
+                  <JFXButton text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
