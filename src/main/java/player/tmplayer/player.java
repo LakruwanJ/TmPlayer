@@ -48,7 +48,7 @@ public class player implements Initializable {
     //fxml component area end
 
 
-    private String path;
+    private String path,fname;
     private MediaPlayer player;
     playTime Slidertime = new playTime();
 
@@ -87,6 +87,7 @@ public class player implements Initializable {
 
         //
         path = file1.toURI().toString();
+        fname = file1.getName();
     }
 
     //load video
@@ -104,6 +105,8 @@ public class player implements Initializable {
 
             player.play();
             vlevel.setText("100");
+
+            name.setText(fname);
 
             //slider
             player.currentTimeProperty().addListener(new ChangeListener<javafx.util.Duration>() {
