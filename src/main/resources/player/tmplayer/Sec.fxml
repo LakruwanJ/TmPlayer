@@ -1,10 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Sec">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Sec">
    <children>
-      <Label layoutX="300.0" layoutY="106.0" text="Niwa" />
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="96.0" prefWidth="646.0" />
+      <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="96.0" prefWidth="160.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="77.0" text="File Name" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="170.0" layoutY="10.0" prefHeight="96.0" prefWidth="142.0">
+         <children>
+            <MenuBar prefHeight="26.0" prefWidth="78.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Select recent videos">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Recent file 1" />
+                        <MenuItem mnemonicParsing="false" text="Recent file 2" />
+                        <MenuItem mnemonicParsing="false" text="Recent file 3" />
+                        <MenuItem mnemonicParsing="false" text="Recent file 4" />
+                        <MenuItem mnemonicParsing="false" text="Recent file 5" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="198.0" prefHeight="192.0" prefWidth="240.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="96.0" prefWidth="240.0">
+               <children>
+                  <JFXCheckBox text="1" textFill="#0f9d58" unCheckedColor="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXCheckBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="96.0" prefWidth="240.0">
+               <children>
+                  <JFXCheckBox text="2" textFill="#0f9d58" unCheckedColor="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXCheckBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="377.0" layoutY="10.0" prefHeight="96.0" prefWidth="274.0">
+         <children>
+            <JFXButton text="Open" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="397.0" prefHeight="96.0" prefWidth="320.0">
+         <children>
+            <JFXButton text="Back" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="330.0" layoutY="397.0" prefHeight="96.0" prefWidth="320.0">
+         <children>
+            <JFXButton text="Play" textFill="#0f9d58">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
