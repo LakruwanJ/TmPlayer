@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -16,11 +17,20 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.player">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" styleClass="nomal" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.player">
     <children>
-        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutY="39.0" prefHeight="563.0" prefWidth="1000.0" styleClass="playarea" stylesheets="@player.css" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <MediaView fx:id="play" fitHeight="200.0" fitWidth="200.0" />
+               </children>
+            </HBox>
+         </children>
+        </AnchorPane>
+        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <MenuBar>
+                <MenuBar prefHeight="39.0" prefWidth="253.0" stylesheets="@player.css">
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
@@ -39,16 +49,16 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Edit">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Start again" />
-                                <MenuItem mnemonicParsing="false" text="Repeat " />
+                                <MenuItem mnemonicParsing="false" onAction="#sAgain" text="Start again" />
+                                <MenuItem mnemonicParsing="false" onAction="#rep" text="Repeat " />
                         <MenuItem mnemonicParsing="false" onAction="#stop" text="Stop" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                                 <MenuItem mnemonicParsing="false" text="Volume up" />
                                 <MenuItem mnemonicParsing="false" text="Volume down" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                                <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed up" />
+                                <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed up" />
                                 <MenuItem mnemonicParsing="false" onAction="#sNomal" text="Norml speed" />
-                                <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed down" />
+                                <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed down" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                                 <MenuItem mnemonicParsing="false" text="Take screenshot" />
                             </items>
@@ -74,9 +84,14 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-            <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="188.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="140.0">
                <children>
-                  <Label fx:id="mode" text=" " textFill="#0f9d58">
+                  <Label fx:id="status1" text="     | " textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mode" alignment="CENTER" prefHeight="26.0" prefWidth="85.0" textFill="#0f9d58" wrapText="true">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -85,13 +100,17 @@
             </HBox>
             </children>
         </HBox>
-        <HBox alignment="CENTER_LEFT" layoutX="400.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <Label fx:id="status" text=" " textFill="#0f9d58">
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="35.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="0.0">
+         <children>
+                <Label fx:id="status" text="|   " textFill="#0f9d58">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Label>
+         </children>
+      </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="400.0" prefHeight="39.0" prefWidth="565.0" AnchorPane.leftAnchor="435.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
                 <Label fx:id="name" text=" " textFill="#0f9d58">
                     <font>
                         <Font size="17.0" />
@@ -101,7 +120,7 @@
         </HBox>
         <HBox alignment="BOTTOM_CENTER" layoutY="602.0" prefHeight="33.0" prefWidth="100.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0">
             <children>
-                <Label fx:id="nowtime" alignment="CENTER" prefHeight="26.0" prefWidth="97.0" text="--:--" textFill="#0f9d58" wrapText="true">
+                <Label fx:id="nowtime" alignment="CENTER" prefHeight="26.0" prefWidth="90.0" text="--:--" textFill="#0f9d58" wrapText="true">
                     <font>
                         <Font size="17.0" />
                     </font>
@@ -119,21 +138,27 @@
         </HBox>
         <AnchorPane layoutX="100.0" layoutY="602.0" prefHeight="33.0" prefWidth="800.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
          <children>
-            <JFXSlider fx:id="playbar" layoutX="260.0" layoutY="12.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-         </children>
-        </AnchorPane>
-        <AnchorPane layoutY="39.0" prefHeight="563.0" prefWidth="1000.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
-         <children>
-            <MediaView fx:id="play" layoutX="400.0" layoutY="182.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
+            <JFXSlider fx:id="playbar" layoutX="260.0" layoutY="12.0" max="99.9" value="0.1" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXSlider>
          </children>
         </AnchorPane>
       <BorderPane layoutY="636.0" prefHeight="45.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <right>
               <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                   <children>
-                      <JFXButton text="|&lt;)" />
-                  <JFXSlider fx:id="soundbar" />
-                      <Label fx:id="vlevel" text="Label" textFill="#0f9d58">
+                  <JFXButton text=" ">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/full.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXSlider fx:id="soundbar" majorTickUnit="10.0" />
+                      <Label fx:id="vlevel" text="50" textFill="#0f9d58">
                           <font>
                               <Font size="17.0" />
                           </font>
@@ -163,7 +188,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton text=" ">
+                  <JFXButton onAction="#rep" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -180,7 +205,7 @@
          <center>
               <HBox alignment="CENTER" prefHeight="45.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                   <children>
-                      <JFXButton text=" ">
+                      <JFXButton onAction="#back60" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -221,7 +246,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton text=" ">
+                  <JFXButton onAction="#skip60" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
