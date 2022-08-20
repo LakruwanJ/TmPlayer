@@ -8,7 +8,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="240.0" maxWidth="352.0" minHeight="240.0" minWidth="352.0" prefHeight="240.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView144p">
+<AnchorPane maxHeight="240.0" maxWidth="352.0" minHeight="240.0" minWidth="352.0" prefHeight="240.0" prefWidth="352.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView240p">
    <children>
       <BorderPane prefHeight="240.0" prefWidth="352.0">
          <center>
@@ -28,7 +28,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="36.0" prefWidth="121.0" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <JFXSlider fx:id="soundbar" prefHeight="14.0" prefWidth="327.0" />
+                  <JFXSlider fx:id="playbar" prefHeight="14.0" prefWidth="327.0" value="0.1" />
                </children>
             </HBox>
          </bottom>

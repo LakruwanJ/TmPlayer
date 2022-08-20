@@ -1,4 +1,4 @@
 package player.tmplayer;
 
-public class MiniView144p {
+public class MiniView144p extends player{
 }

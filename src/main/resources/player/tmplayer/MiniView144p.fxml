@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView144p">
    <children>
-      <BorderPane prefHeight="360.0" prefWidth="480.0">
+      <BorderPane prefHeight="360.0" prefWidth="480.0" styleClass="playarea" stylesheets="@player.css">
          <center>
             <MediaView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
@@ -56,7 +56,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXSlider layoutX="111.0" layoutY="25.0" prefHeight="14.0" prefWidth="258.0" />
+                  <JFXSlider fx:id="playbar" layoutX="111.0" layoutY="25.0" prefHeight="14.0" prefWidth="258.0" value="0.1" />
                   <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="121.0" AnchorPane.leftAnchor="0.0">
                      <children>
                         <JFXButton onAction="#play" text=" ">

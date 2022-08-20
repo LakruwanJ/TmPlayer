@@ -2,103 +2,93 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="550.0" maxWidth="400.0" prefHeight="520.0" prefWidth="400.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Login">
    <children>
-      <HBox prefHeight="100.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER" text="Tm Player" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutY="75.0" prefHeight="66.0" prefWidth="284.0">
-         <children>
-            <Label text="User Name" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField />
-            <Label text="*" textFill="RED">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutY="142.0" prefHeight="58.0" prefWidth="284.0">
-         <children>
-            <Label text="password" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <PasswordField />
-            <Label text="*" textFill="RED">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutY="200.0" prefHeight="49.0" prefWidth="600.0">
-         <children>
-            <Label text="Error Name" textFill="RED">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutY="250.0" prefHeight="58.0" prefWidth="113.0">
-         <children>
-            <JFXButton text="Back" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
-      <HBox layoutX="126.0" layoutY="257.0" prefHeight="50.0" prefWidth="114.0">
-         <children>
-            <JFXButton prefHeight="40.0" prefWidth="78.0" text="Reset" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
-      <HBox layoutY="286.0" prefHeight="114.0" prefWidth="255.0">
-         <children>
-            <Label text="Forget user name or PassWord" textFill="#0f9d58">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutX="240.0" layoutY="257.0" prefHeight="40.0" prefWidth="200.0">
-         <children>
-            <JFXButton text="Login" textFill="#0f9d58">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
-      <JFXButton layoutX="274.0" layoutY="296.0" text="Change" textFill="#0f9d58">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
-      <HBox layoutX="452.0" layoutY="100.0" prefHeight="100.0" prefWidth="150.0" />
+      <BorderPane prefHeight="520.0" prefWidth="400.0">
+         <center>
+            <AnchorPane prefHeight="249.0" prefWidth="403.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="2.0" layoutY="29.0" prefHeight="57.0" prefWidth="400.0">
+                     <children>
+                        <Label fx:id="fulltime1" alignment="CENTER" prefHeight="26.0" prefWidth="178.0" text="User Name :     " textFill="#0f9d58" wrapText="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="25.0" prefWidth="158.0" />
+                        <Label fx:id="fulltime11" alignment="CENTER" prefHeight="26.0" prefWidth="34.0" text="*" textFill="RED" wrapText="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="2.0" layoutY="86.0" prefHeight="57.0" prefWidth="400.0">
+                     <children>
+                        <Label fx:id="fulltime11" alignment="CENTER" prefHeight="26.0" prefWidth="179.0" text="Password :        " textFill="#0f9d58" wrapText="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="25.0" prefWidth="158.0" />
+                        <Label fx:id="fulltime111" alignment="CENTER" prefHeight="26.0" prefWidth="34.0" text="*" textFill="RED" wrapText="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="57.0" prefWidth="400.0">
+                     <children>
+                        <Label fx:id="fulltime1111" alignment="CENTER" prefHeight="26.0" prefWidth="301.0" text="Username or Password incorrect" textFill="RED" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <HBox prefHeight="150.0" prefWidth="400.0" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <Label fx:id="fulltime" alignment="CENTER" prefHeight="150.0" prefWidth="400.0" text="TrustMe Player" textFill="#0f9d58" wrapText="true">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="144.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton prefHeight="38.0" prefWidth="154.0" text="Back to  player" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton prefHeight="38.0" prefWidth="99.0" text="Reset" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton prefHeight="38.0" prefWidth="106.0" text="Login" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>
