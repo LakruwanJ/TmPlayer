@@ -67,7 +67,7 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Admin panel" />
                                 <MenuItem mnemonicParsing="false" text="Mini view" />
-                                <MenuItem mnemonicParsing="false" text="Playlist" />
+                                <MenuItem mnemonicParsing="false" onAction="#gotoplaylist" text="Playlist" />
                                 <MenuItem mnemonicParsing="false" text="Secret user" />
                                 <MenuItem mnemonicParsing="false" text="Only video mode" />
                         <SeparatorMenuItem mnemonicParsing="false" />

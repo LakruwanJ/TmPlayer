@@ -9,11 +9,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXSlider;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,6 +27,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class player implements Initializable {
@@ -45,6 +51,10 @@ public class player implements Initializable {
     private Label status;
     @FXML
     private Label vlevel;
+    @FXML
+    private Stage stage1;
+    private Scene scene1;
+    private Parent root1;
     //fxml component area end
 
 
@@ -234,6 +244,15 @@ public class player implements Initializable {
         skipAndBack(60);
     }
 
+    //
+    public void gotoplaylist(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("Playlist.fxml"));
+        stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene1 = new Scene(root1);
+        stage1.setScene(scene1);
+        stage1.show();
+
+    }
 
 
     @Override
