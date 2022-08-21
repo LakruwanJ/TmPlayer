@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXSlider;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -98,8 +97,8 @@ public class player implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
                     playbar.setValue(newValue.toSeconds());
-                    nowtime.setText(Slidertime.Time(newValue.toSeconds()));
-                    fulltime.setText(Slidertime.Time(player.getTotalDuration().toSeconds()));
+                    nowtime.setText(Slidertime.displayTime(newValue.toSeconds()));
+                    fulltime.setText(Slidertime.displayTime(player.getTotalDuration().toSeconds()));
                 }
             });
             playbar.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -220,6 +219,14 @@ public class player implements Initializable {
 
     //
     public void gotoplaylist() throws IOException {
+
+        mode.getScene().getWindow().hide();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(player.class.getResource("Playlist.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
+
 
     }
 
