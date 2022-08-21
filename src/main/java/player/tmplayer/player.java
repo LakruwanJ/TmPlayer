@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -52,9 +53,9 @@ public class player implements Initializable {
     @FXML
     private Label vlevel;
     @FXML
-    private Stage stage1;
-    private Scene scene1;
-    private Parent root1;
+    private MenuItem mv240;
+    @FXML
+    private MenuItem mv320;
     //fxml component area end
 
 
@@ -63,33 +64,7 @@ public class player implements Initializable {
     playTime Slidertime = new playTime();
 
 
-    /* open file
-    public void openfile(ActionEvent event){
-        //choose
-        FileChooser file = new FileChooser();
-        File file1 = file.showOpenDialog(null);
-
-        //
-        path = file1.toURI().toString();
-
-        if(path != null){
-            Media media = new Media(path);
-            player = new MediaPlayer(media);
-            play.setMediaPlayer(player);
-
-            final DoubleProperty width = play.fitWidthProperty();
-            final DoubleProperty height = play.fitHeightProperty();
-
-            width.bind(Bindings.selectDouble(play.sceneProperty(), "width"));
-            height.bind(Bindings.selectDouble(play.sceneProperty(), "height"));
-
-            player.play();
-        }
-    }
-
-    */
-
-    //grt path
+    //get path
     public void getPath(){
         //choose
         FileChooser file = new FileChooser();
@@ -229,7 +204,6 @@ public class player implements Initializable {
     //-10
     public void back10(ActionEvent event){
         skipAndBack(-10);
-
     }
     //-60
     public void back60(ActionEvent event){
@@ -240,20 +214,26 @@ public class player implements Initializable {
         skipAndBack(10);
     }
     //+60
-    public void skip60(ActionEvent event){
+    public void skip60(ActionEvent event) {
         skipAndBack(60);
     }
 
     //
-    public void gotoplaylist(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("Playlist.fxml"));
-        stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene1 = new Scene(root1);
-        stage1.setScene(scene1);
-        stage1.show();
+    public void gotoplaylist() throws IOException {
 
     }
 
+    public void goto240() throws IOException {
+
+    }
+
+    public void goto320() throws IOException {
+
+    }
+
+    public void gotologin() throws IOException {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

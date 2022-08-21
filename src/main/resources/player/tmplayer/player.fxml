@@ -66,7 +66,8 @@
                         <Menu mnemonicParsing="false" text="Option">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Admin panel" />
-                                <MenuItem mnemonicParsing="false" text="Mini view" />
+                                <MenuItem fx:id="mv240" mnemonicParsing="false" onAction="#gotoplaylist" text="Mini view 240p" />
+                        <MenuItem fx:id="mv320" mnemonicParsing="false" text="Mini view 320p" />
                                 <MenuItem mnemonicParsing="false" onAction="#gotoplaylist" text="Playlist" />
                                 <MenuItem mnemonicParsing="false" text="Secret user" />
                                 <MenuItem mnemonicParsing="false" text="Only video mode" />
