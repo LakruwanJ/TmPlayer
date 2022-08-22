@@ -219,27 +219,22 @@ public class player implements Initializable {
 
     //
     public void gotoplaylist() throws IOException {
-
-        mode.getScene().getWindow().hide();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(player.class.getResource("Playlist.fxml"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-
-
-
+        openNew.onlyOpen("Playlist.fxml");
     }
 
     public void goto240() throws IOException {
-
+        Duration d = Duration.seconds(playbar.getValue());
+        mode.getScene().getWindow().hide();
+        openNew.onlyOpen("MiniView240p.fxml");
     }
 
     public void goto320() throws IOException {
-
+        mode.getScene().getWindow().hide();
+        openNew.onlyOpen("MiniView320p.fxml");
     }
 
     public void gotologin() throws IOException {
-
+        openNew.onlyOpen("login.fxml");
     }
 
     @Override

@@ -11,26 +11,12 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView144p">
+<AnchorPane maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView320p">
    <children>
-      <BorderPane prefHeight="360.0" prefWidth="480.0" styleClass="playarea" stylesheets="@player.css">
+      <BorderPane prefHeight="360.0" prefWidth="346.0" styleClass="playarea" stylesheets="@player.css">
          <center>
             <MediaView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
-         <top>
-            <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="480.0" BorderPane.alignment="CENTER_RIGHT">
-               <children>
-                  <JFXButton text="Back to  player" textFill="#0f9d58">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-               <BorderPane.margin>
-                  <Insets right="20.0" />
-               </BorderPane.margin>
-            </HBox>
-         </top>
          <bottom>
             <AnchorPane prefHeight="36.0" prefWidth="480.0" BorderPane.alignment="CENTER">
                <children>
@@ -82,6 +68,20 @@
                </children>
             </AnchorPane>
          </bottom>
+         <top>
+            <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="421.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton onAction="#gotomain" prefHeight="30.0" prefWidth="116.0" text="Back to  player" textFill="#0f9d58">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <BorderPane.margin>
+                  <Insets right="20.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>
