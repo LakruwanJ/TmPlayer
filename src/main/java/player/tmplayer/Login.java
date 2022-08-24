@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
@@ -28,10 +30,12 @@ public class Login implements Initializable {
     @FXML
     private TextField uname;
 
-
+    //-------------------DataBase Area Start-------------------
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    String status="a",name,pword;
+    String[] info = {name, pword, String.valueOf(LocalDate.now()), String.valueOf(LocalTime.now()), status};
 
     public void Login(){
         //connect db
@@ -40,37 +44,73 @@ public class Login implements Initializable {
 
     //check username and password
     public void check(String userName, String passWord) throws SQLException, IOException {
-        Login();
-        String q = "SELECT * FROM login where username = ? and password = ?";
+
+        con = connectDB.connect();
+        String q = "SELECT * FROM login where username=? and password=?";
+        pst = con.prepareStatement(q);
+
+
         pst.setString(1, userName);
         pst.setString(2, passWord);
-
         rs = pst.executeQuery();
 
         if (rs.next()){
+            status = "Successful";
             uname.getScene().getWindow().hide();
             openNew.onlyOpen("Analize.fxml");
         }else {
             e_all.setVisible(true);
+            status = "Unsuccessful";
         }
     }
 
+    //add status to table
+    public void addStatus(String[] temp) throws SQLException {
+        con = connectDB.connect();
+        String p = "INSERT INTO userlogin VALUES ('"+ temp[0] +"', '"+ temp[1] +"', '"+ temp[2] +"', '"+ temp[3] +"', '"+ temp[4] +"')";
+        pst = con.prepareStatement(p);
+        pst.execute();
+    }
+
+    //-------------------DataBase Area End-------------------
+
+
+    public void clearerror(){
+        e_pw.setVisible(false);
+        e_uname.setVisible(false);
+        e_all.setVisible(false);
+    }
 
     public void login(ActionEvent event) throws IOException, SQLException {
 
         String userName = uname.getText();
-        String passWord = pw.getText();
+        String passWord = pw.getText().toString();
 
-        String x = "abc";
-        String y = "123";
-         if (userName.equals("")){
+        name = userName;
+        pword = passWord;
+
+        if (userName.equals("")){
              e_uname.setVisible(true);
+             status = "Unsuccessful";
+             addStatus(info);
          } else if (passWord.equals("")) {
              e_pw.setVisible(true);
+             status = "Unsuccessful";
+             addStatus(info);
          }else {
-             check(userName,passWord);
+            check(userName,passWord);
+            addStatus(info);
          }
+
+
     }
+
+    public void reset(){
+        clearerror();
+        uname.setText("");
+        pw.setText("");
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
