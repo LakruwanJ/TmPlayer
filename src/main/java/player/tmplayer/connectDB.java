@@ -10,7 +10,7 @@ public class connectDB {
     private static String port = "3306";
     private static String username = "root";
     private static String password = "";
-    private static String dbname = "playerDB";
+    private static String dbname = "playerdb";
 
     private static String url = "jdbc:mysql://"+host +":"+port+"/"+dbname;
 

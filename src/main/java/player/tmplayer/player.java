@@ -9,16 +9,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXSlider;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.MenuItem;
@@ -27,7 +29,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class player implements Initializable {
@@ -61,6 +62,44 @@ public class player implements Initializable {
     private String path,fname;
     private MediaPlayer player;
     playTime Slidertime = new playTime();
+
+
+
+    //-------------------DataBase _ Start-------------------
+
+    Connection con = null;
+    PreparedStatement pst = null;
+    int id = 8;
+
+    LocalDate sDate = LocalDate.now(),eDate = LocalDate.now();
+    LocalTime sTime = LocalTime.now(),eTime = LocalTime.now();
+    String fomat = ".mp4",fa="x",aa="x";
+
+    //create connection
+    public void getcon(){
+        //connect db
+        con = connectDB.connect();
+    }
+
+    //execute
+    public void execute_(String q) throws SQLException {
+        getcon();
+        pst = con.prepareStatement(q);
+        pst.execute();
+    }
+
+
+
+    //change db end time
+    public void cedt() throws SQLException {
+        String q = "UPDATE watchvideo SET E_date = '" + LocalDate.now() +"', E_time = '" + LocalTime.now() +"' WHERE id = '"+ id +"'" ;
+        pst = con.prepareStatement(q);
+        pst.execute();
+    }
+
+    //-------------------DataBase _ End-------------------
+
+
 
 
     //get path
@@ -99,6 +138,12 @@ public class player implements Initializable {
                     playbar.setValue(newValue.toSeconds());
                     nowtime.setText(Slidertime.displayTime(newValue.toSeconds()));
                     fulltime.setText(Slidertime.displayTime(player.getTotalDuration().toSeconds()));
+                    //db
+                    try {
+                        cedt();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
             playbar.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -141,10 +186,15 @@ public class player implements Initializable {
     }
 
     //open file
-    public void openfile(ActionEvent event){
+    public void openfile(ActionEvent event) throws SQLException {
         getPath();
         loadVideo();
         mode.setText("Playing");
+
+        //db
+        String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
+        String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"')" ;
+        execute_(p);
     }
 
     //repeat
@@ -166,9 +216,10 @@ public class player implements Initializable {
     }
 
     //stop
-    public void stop(ActionEvent event){
+    public void stop(ActionEvent event) throws SQLException {
         player.stop();
         mode.setText("Stoped");
+        cedt();
     }
 
     //pause
@@ -234,7 +285,7 @@ public class player implements Initializable {
     }
 
     public void gotologin() throws IOException {
-        openNew.onlyOpen("login.fxml");
+        openNew.onlyOpen("Login.fxml");
     }
 
     @Override
