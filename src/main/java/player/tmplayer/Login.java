@@ -34,8 +34,7 @@ public class Login implements Initializable {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    String status="a",name,pword;
-    String[] info = {name, pword, String.valueOf(LocalDate.now()), String.valueOf(LocalTime.now()), status};
+    String[] info = {"","","","",""};
 
     public void Login(){
         //connect db
@@ -55,12 +54,13 @@ public class Login implements Initializable {
         rs = pst.executeQuery();
 
         if (rs.next()){
-            status = "Successful";
+            info[4] = "Successful";
             uname.getScene().getWindow().hide();
             openNew.onlyOpen("Analize.fxml");
         }else {
+            e_all.setText("Username or Password incorrect");
             e_all.setVisible(true);
-            status = "Unsuccessful";
+            info[4] = "Unsuccessful";
         }
     }
 
@@ -84,24 +84,32 @@ public class Login implements Initializable {
     public void login(ActionEvent event) throws IOException, SQLException {
 
         String userName = uname.getText();
-        String passWord = pw.getText().toString();
+        String passWord = pw.getText();
 
-        name = userName;
-        pword = passWord;
+        clearerror();
+
+        info[0] = userName;
+        info[1] = passWord;
+        info[2] = String.valueOf(LocalDate.now());
+        info[3] = String.valueOf(LocalTime.now());
 
         if (userName.equals("")){
-             e_uname.setVisible(true);
-             status = "Unsuccessful";
-             addStatus(info);
-         } else if (passWord.equals("")) {
-             e_pw.setVisible(true);
-             status = "Unsuccessful";
-             addStatus(info);
-         }else {
+            e_all.setText("Enter Username");
+            e_uname.setVisible(true);
+            e_all.setVisible(true);
+            info[4] = "Unsuccessful";
+        }
+        else if (passWord.equals("")) {
+            e_all.setText("Enter Password");
+            e_all.setVisible(true);
+            e_pw.setVisible(true);
+            info[4] = "Unsuccessful";
+        }
+        else {
             check(userName,passWord);
-            addStatus(info);
-         }
-
+        }
+        //add status to database
+        addStatus(info);
 
     }
 
