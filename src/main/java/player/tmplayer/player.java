@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -58,10 +59,34 @@ public class player implements Initializable {
     private MenuItem mv320;
     //fxml component area end
 
-
-    private String path,fname;
+    public String path;
+    private String fname;
     private MediaPlayer player;
     playTime Slidertime = new playTime();
+
+    public player() throws SQLException {
+
+
+        System.out.println(path);
+
+        //set correct id to db
+        lastid();
+        if (lid == null) {
+            id = 0;
+        } else if (Integer.parseInt(lid)<0){
+            id = 0;
+        }else {
+            id = Integer.parseInt(lid) + 1 ;
+        }
+
+        //check path
+        if (path != null){
+            loadVideo();
+            mode.setText("Playing");
+        }
+
+
+    }
 
 
 
@@ -69,11 +94,12 @@ public class player implements Initializable {
 
     Connection con = null;
     PreparedStatement pst = null;
-    int id = 8;
+    ResultSet rs = null;
+    int id;
 
     LocalDate sDate = LocalDate.now(),eDate = LocalDate.now();
     LocalTime sTime = LocalTime.now(),eTime = LocalTime.now();
-    String fomat = ".mp4",fa="x",aa="x";
+    String fomat = ".mp4",fa="x",aa="x",lid;
 
     //create connection
     public void getcon(){
@@ -86,6 +112,19 @@ public class player implements Initializable {
         getcon();
         pst = con.prepareStatement(q);
         pst.execute();
+        id = id + 1 ;
+    }
+
+    //get last id
+    private String lastid() throws SQLException {
+        String p = "select * from watchvideo order by ID desc limit 1";
+        con = connectDB.connect();
+        pst = con.prepareStatement(p);
+        rs = pst.executeQuery();
+        while (rs.next()){
+            lid = rs.getString("ID");
+        }
+        return lid;
     }
 
 
@@ -99,7 +138,9 @@ public class player implements Initializable {
 
     //-------------------DataBase _ End-------------------
 
-
+    public void player(){
+        loadVideo();
+    }
 
 
     //get path
@@ -192,8 +233,8 @@ public class player implements Initializable {
         mode.setText("Playing");
 
         //db
-        String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
-        String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"')" ;
+        String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(path),String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
+        String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"', '"+ wv[8] +"')" ;
         execute_(p);
     }
 
