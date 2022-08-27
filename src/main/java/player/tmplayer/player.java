@@ -32,6 +32,8 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import static javafx.application.Application.launch;
+
 public class player implements Initializable {
 
     //fxml component area start
@@ -59,42 +61,22 @@ public class player implements Initializable {
     private MenuItem mv320;
     //fxml component area end
 
-    public String path;
+    public static String path;
     private String fname;
-    private MediaPlayer player;
+    public MediaPlayer player;
     playTime Slidertime = new playTime();
 
-    public player() throws SQLException {
-
-
-        System.out.println(path);
-
-        //set correct id to db
-        lastid();
-        if (lid == null) {
-            id = 0;
-        } else if (Integer.parseInt(lid)<0){
-            id = 0;
-        }else {
-            id = Integer.parseInt(lid) + 1 ;
-        }
-
-        //check path
-        if (path != null){
-            loadVideo();
-            mode.setText("Playing");
-        }
+    public player() throws SQLException, IOException {
 
 
     }
-
-
 
     //-------------------DataBase _ Start-------------------
 
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    public static int nTime;
     int id;
 
     LocalDate sDate = LocalDate.now(),eDate = LocalDate.now();
@@ -138,11 +120,6 @@ public class player implements Initializable {
 
     //-------------------DataBase _ End-------------------
 
-    public void player(){
-        loadVideo();
-    }
-
-
     //get path
     public void getPath(){
         //choose
@@ -179,6 +156,7 @@ public class player implements Initializable {
                     playbar.setValue(newValue.toSeconds());
                     nowtime.setText(Slidertime.displayTime(newValue.toSeconds()));
                     fulltime.setText(Slidertime.displayTime(player.getTotalDuration().toSeconds()));
+                    nTime = (int) newValue.toSeconds();
                     //db
                     try {
                         cedt();
@@ -227,7 +205,7 @@ public class player implements Initializable {
     }
 
     //open file
-    public void openfile(ActionEvent event) throws SQLException {
+    public void openfile() throws SQLException {
         getPath();
         loadVideo();
         mode.setText("Playing");
@@ -316,6 +294,7 @@ public class player implements Initializable {
 
     public void goto240() throws IOException {
         Duration d = Duration.seconds(playbar.getValue());
+        player.stop();
         mode.getScene().getWindow().hide();
         openNew.onlyOpen("MiniView240p.fxml");
     }
@@ -331,6 +310,28 @@ public class player implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        //set correct id to db
+        try {
+            lastid();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (lid == null) {
+            id = 0;
+        } else if (Integer.parseInt(lid)<0){
+            id = 0;
+        }else {
+            id = Integer.parseInt(lid) + 1 ;
+        }
+
+        //check path
+        if (path != null){
+            loadVideo();
+            System.out.println(nTime);
+            skipAndBack(60);
+            mode.setText("Playing");
+        }
 
     }
 }

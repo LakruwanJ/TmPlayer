@@ -82,8 +82,7 @@ public class Playlist extends player implements Initializable {
 
     }
 
-    public Playlist() throws SQLException {
-        getLastId();
+    public Playlist() throws SQLException, IOException {
     }
 
 
@@ -94,7 +93,7 @@ public class Playlist extends player implements Initializable {
 
     //play video
     public void b_v3() throws IOException {
-        path = patharr[3];
+        player.path = patharr[3];
         System.out.println(path);
 
         v9.getScene().getWindow().hide();
@@ -108,6 +107,15 @@ public class Playlist extends player implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        try {
+            getLastId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            setname();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -12,7 +12,7 @@ public class MiniView320p extends player{
     @FXML
     private JFXSlider playbar;
 
-    public MiniView320p() throws SQLException {
+    public MiniView320p() throws SQLException, IOException {
     }
 
     public void gotomain() throws IOException {
