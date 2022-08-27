@@ -53,6 +53,9 @@ public class Playlist extends player implements Initializable {
     String[] te = {"","","","","","","","","",""};
     String[] patharr = {"","","","","","","","","",""};
 
+    public Playlist() throws SQLException, IOException {
+    }
+
 
     public void getLastId() throws SQLException {
         String p = "select * from watchvideo order by ID desc limit 10";
@@ -82,20 +85,54 @@ public class Playlist extends player implements Initializable {
 
     }
 
-    public Playlist() throws SQLException, IOException {
-    }
-
-
     //play video
-    public void b_v1() throws IOException, SQLException {
-        setname();
+    public void b_v1() throws IOException {
+        path = patharr[0];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
     }
-
-    //play video
+    public void b_v2() throws IOException {
+        path = patharr[1];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
     public void b_v3() throws IOException {
-        player.path = patharr[3];
-        System.out.println(path);
-
+        path = patharr[2];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v4() throws IOException {
+        path = patharr[3];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v5() throws IOException {
+        path = patharr[4];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v6() throws IOException {
+        path = patharr[5];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v7() throws IOException {
+        path = patharr[6];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v8() throws IOException {
+        path = patharr[7];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v9() throws IOException {
+        path = patharr[8];
+        v9.getScene().getWindow().hide();
+        openNew.onlyOpen("player.fxml");
+    }
+    public void b_v10() throws IOException {
+        path = patharr[9];
         v9.getScene().getWindow().hide();
         openNew.onlyOpen("player.fxml");
     }

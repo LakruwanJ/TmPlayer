@@ -36,11 +36,6 @@ public class Login implements Initializable {
     ResultSet rs = null;
     String[] info = {"","","","",""};
 
-    public void Login(){
-        //connect db
-        con = connectDB.connect();
-    }
-
     //check username and password
     public void check(String userName, String passWord) throws SQLException, IOException {
 

@@ -289,6 +289,10 @@ public class player implements Initializable {
 
     //
     public void gotoplaylist() throws IOException {
+        if (path!=null) {
+            player.stop();
+        }
+        mode.getScene().getWindow().hide();
         openNew.onlyOpen("Playlist.fxml");
     }
 
@@ -306,6 +310,14 @@ public class player implements Initializable {
 
     public void gotologin() throws IOException {
         openNew.onlyOpen("Login.fxml");
+    }
+
+    public void close() {
+        if (path!=null) {
+            player.stop();
+        }
+
+        mode.getScene().getWindow().hide();
     }
 
     @Override

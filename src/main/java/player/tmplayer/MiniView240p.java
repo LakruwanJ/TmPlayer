@@ -106,10 +106,8 @@ public class MiniView240p extends player{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         loadVideo240();
         System.out.println(x);
-
     }
 
 

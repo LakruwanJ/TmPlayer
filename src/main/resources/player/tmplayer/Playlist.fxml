@@ -30,7 +30,7 @@
             </AnchorPane>
             <AnchorPane layoutY="35.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v2" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v2" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v2" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -48,7 +48,7 @@
             </AnchorPane>
             <AnchorPane layoutY="105.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v4" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v4" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v4" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -57,7 +57,7 @@
             </AnchorPane>
             <AnchorPane layoutY="140.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v5" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v5" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v5" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -66,7 +66,7 @@
             </AnchorPane>
             <AnchorPane layoutY="175.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v6" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v6" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v6" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -75,7 +75,7 @@
             </AnchorPane>
             <AnchorPane layoutY="210.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v7" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v7" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v7" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -84,7 +84,7 @@
             </AnchorPane>
             <AnchorPane layoutY="245.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v8" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v8" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v8" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -93,7 +93,7 @@
             </AnchorPane>
             <AnchorPane layoutY="280.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v9" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v9" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v9" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -102,7 +102,7 @@
             </AnchorPane>
             <AnchorPane layoutY="315.0" prefHeight="35.0" prefWidth="700.0">
                <children>
-                  <JFXButton fx:id="v10" alignment="TOP_LEFT" layoutX="179.0" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+                  <JFXButton fx:id="v10" alignment="TOP_LEFT" layoutX="179.0" onAction="#b_v10" prefHeight="32.0" text="Video" textFill="#0f9d58" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="15.0" />
                      </font>
