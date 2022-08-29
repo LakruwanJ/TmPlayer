@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Playlist">
+   <children>
+      <HBox prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="112.0" prefWidth="700.0" text="TrustMe Player" textFill="#0f9d58" wrapText="true">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <AnchorPane layoutY="80.0" prefHeight="422.0" prefWidth="700.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <HBox prefHeight="42.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="fulltime1" alignment="CENTER" prefHeight="26.0" prefWidth="170.0" text="Video name :     " textFill="#0f9d58" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="vname" prefHeight="26.0" prefWidth="521.0" text="User Name :     " textFill="#0f9d58" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <AnchorPane layoutY="42.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+               <children>
+                  <TableView fx:id="rs_T" layoutX="10.0" layoutY="5.0" prefHeight="362.0" prefWidth="713.0" styleClass="playarea" stylesheets="@player.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                    <columns>
+                      <TableColumn fx:id="t1" prefWidth="160.0" text="Starting Date" />
+                      <TableColumn fx:id="t2" prefWidth="100.0" text="Starting Time" />
+                        <TableColumn fx:id="t3" prefWidth="160.0" text="Ending Date" />
+                        <TableColumn fx:id="t4" prefWidth="100.0" text="Ending Time" />
+                        <TableColumn fx:id="t5" prefWidth="160.0" text="Duration" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
