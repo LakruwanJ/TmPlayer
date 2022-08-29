@@ -37,30 +37,24 @@
                                 <MenuItem mnemonicParsing="false" onAction="#openfile" text="Open file" />
                         <Menu mnemonicParsing="false" text="Resent list">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="1" />
-                                      <MenuItem mnemonicParsing="false" text="2" />
-                              <MenuItem mnemonicParsing="false" text="3" />
-                              <MenuItem mnemonicParsing="false" text="4" />
-                              <MenuItem mnemonicParsing="false" text="5" />
+                            <MenuItem fx:id="rl1" mnemonicParsing="false" onAction="#play1" text="1" />
+                                      <MenuItem fx:id="rl2" mnemonicParsing="false" onAction="#play2" text="2" />
+                              <MenuItem fx:id="rl3" mnemonicParsing="false" onAction="#play3" text="3" />
+                              <MenuItem fx:id="rl4" mnemonicParsing="false" onAction="#play4" text="4" />
+                              <MenuItem fx:id="rl5" mnemonicParsing="false" onAction="#play5" text="5" />
                           </items>
                         </Menu>
-                                <MenuItem mnemonicParsing="false" text="Exit" />
+                                <MenuItem mnemonicParsing="false" onAction="#close" text="Exit" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Edit">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#sAgain" text="Start again" />
-                                <MenuItem mnemonicParsing="false" onAction="#rep" text="Repeat " />
                         <MenuItem mnemonicParsing="false" onAction="#stop" text="Stop" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                                <MenuItem mnemonicParsing="false" text="Volume up" />
-                                <MenuItem mnemonicParsing="false" text="Volume down" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                                 <MenuItem mnemonicParsing="false" onAction="#fast" text="Speed up" />
                                 <MenuItem mnemonicParsing="false" onAction="#sNomal" text="Norml speed" />
                                 <MenuItem mnemonicParsing="false" onAction="#slow" text="Speed down" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                                <MenuItem mnemonicParsing="false" text="Take screenshot" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Option">
@@ -70,16 +64,6 @@
                         <MenuItem fx:id="mv320" mnemonicParsing="false" onAction="#goto320" text="Mini view 320p" />
                                 <MenuItem mnemonicParsing="false" onAction="#gotoplaylist" text="Playlist" />
                                 <MenuItem mnemonicParsing="false" text="Get data list" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                                <MenuItem mnemonicParsing="false" text="After shutdown" />
-                                <MenuItem mnemonicParsing="false" text="After sleep" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About player" />
-                                <MenuItem mnemonicParsing="false" text="Special option" />
-                                <MenuItem mnemonicParsing="false" text="Admin mode" />
                             </items>
                         </Menu>
                     </menus>

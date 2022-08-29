@@ -32,8 +32,6 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
-import static javafx.application.Application.launch;
-
 public class player implements Initializable {
 
     //fxml component area start
@@ -52,17 +50,24 @@ public class player implements Initializable {
     @FXML
     private Label nowtime;
     @FXML
-    private Label status;
-    @FXML
     private Label vlevel;
     @FXML
-    private MenuItem mv240;
+    private MenuItem rl1;
     @FXML
-    private MenuItem mv320;
+    private MenuItem rl2;
+    @FXML
+    private MenuItem rl3;
+    @FXML
+    private MenuItem rl4;
+    @FXML
+    private MenuItem rl5;
     //fxml component area end
 
     public static String path;
+    public static float sound;
     private String fname;
+    public String[] rl = {"","","","",""};
+    public String[] rlPath = {"","","","",""};
     public MediaPlayer player;
     playTime Slidertime = new playTime();
 
@@ -73,7 +78,7 @@ public class player implements Initializable {
 
     //-------------------DataBase _ Start-------------------
 
-    Connection con = null;
+    public static Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     public static int nTime;
@@ -132,7 +137,7 @@ public class player implements Initializable {
     }
 
     //load video
-    public void loadVideo(){
+    public void loadVideo() throws SQLException {
         if(path != null) {
             Media media = new Media(path);
             player = new MediaPlayer(media);
@@ -194,10 +199,20 @@ public class player implements Initializable {
                 public void invalidated(Observable observable) {
                     player.setVolume(soundbar.getValue()/100);
                     //set value to label
-                    int i = (int) (soundbar.getValue());
+                    sound = (float) (soundbar.getValue()/100);
+                    System.out.println(sound);
+                    int i = (int) soundbar.getValue();
                     vlevel.setText(String.valueOf(i));
                 }
             });
+
+
+            mode.setText("Playing");
+
+            //db
+            String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(path),String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
+            String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"', '"+ wv[8] +"')" ;
+            execute_(p);
 
         }
 
@@ -208,22 +223,16 @@ public class player implements Initializable {
     public void openfile() throws SQLException {
         getPath();
         loadVideo();
-        mode.setText("Playing");
-
-        //db
-        String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(path),String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
-        String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"', '"+ wv[8] +"')" ;
-        execute_(p);
     }
 
     //repeat
-    public void rep(ActionEvent event){
+    public void rep(ActionEvent event) throws SQLException {
         loadVideo();
         mode.setText("Playing");
     }
 
     //start again
-    public void sAgain(ActionEvent event){
+    public void sAgain(ActionEvent event) throws SQLException {
         loadVideo();
         mode.setText("Playing");
     }
@@ -298,12 +307,16 @@ public class player implements Initializable {
 
     public void goto240() throws IOException {
         Duration d = Duration.seconds(playbar.getValue());
+        sound =  (float) soundbar.getValue()/100;
         player.stop();
         mode.getScene().getWindow().hide();
         openNew.onlyOpen("MiniView240p.fxml");
     }
 
     public void goto320() throws IOException {
+        Duration d = Duration.seconds(playbar.getValue());
+        sound = (int) soundbar.getValue();
+        player.stop();
         mode.getScene().getWindow().hide();
         openNew.onlyOpen("MiniView320p.fxml");
     }
@@ -318,6 +331,51 @@ public class player implements Initializable {
         }
 
         mode.getScene().getWindow().hide();
+    }
+
+    //set resent list
+    public void rl() throws SQLException {
+
+
+        String p = "select * from watchvideo order by ID desc limit 5";
+        con = connectDB.connect();
+        pst = con.prepareStatement(p);
+        rs = pst.executeQuery();
+
+        int x = 0;
+        while (rs.next()){
+            rl[x] = rs.getString("VideoName");
+            rlPath[x] = rs.getString("Path");
+            x=x+1;
+        }
+
+        rl1.setText(rl[0]);
+        rl2.setText(rl[1]);
+        rl3.setText(rl[2]);
+        rl4.setText(rl[3]);
+        rl5.setText(rl[4]);
+    }
+
+    //play resent list videos
+    public void play1() throws SQLException {
+        path = rlPath[0];
+        loadVideo();
+    }
+    public void play2() throws SQLException {
+        path = rlPath[1];
+        loadVideo();
+    }
+    public void play3() throws SQLException {
+        path = rlPath[2];
+        loadVideo();
+    }
+    public void play4() throws SQLException {
+        path = rlPath[3];
+        loadVideo();
+    }
+    public void play5() throws SQLException {
+        path = rlPath[4];
+        loadVideo();
     }
 
     @Override
@@ -337,9 +395,19 @@ public class player implements Initializable {
             id = Integer.parseInt(lid) + 1 ;
         }
 
+        try {
+            rl();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //check path
         if (path != null){
-            loadVideo();
+            try {
+                loadVideo();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println(nTime);
             skipAndBack(60);
             mode.setText("Playing");

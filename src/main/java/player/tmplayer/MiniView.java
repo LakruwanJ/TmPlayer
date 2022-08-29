@@ -1,12 +1,11 @@
 package player.tmplayer;
 
 import com.jfoenix.controls.JFXSlider;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class MiniView240p extends player{
+public class MiniView extends player{
 
     @FXML
     private MediaView play;
@@ -32,14 +31,11 @@ public class MiniView240p extends player{
     private MediaPlayer player;
     int x;
 
-    public MiniView240p() throws SQLException, IOException {
-    }
-
-    public void play(){
+    public MiniView() throws SQLException, IOException {
     }
 
 
-    public void loadVideo240(){
+    public void loadVideo(){
         if(path != null) {
             Media media = new Media(path);
             player = new MediaPlayer(media);
@@ -52,6 +48,8 @@ public class MiniView240p extends player{
             height.bind(Bindings.selectDouble(play.sceneProperty(), "height"));
 
             player.play();
+            player.setVolume(sound);
+            System.out.println(sound);
 
             //slider
             player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
@@ -95,6 +93,15 @@ public class MiniView240p extends player{
 
     }
 
+    //play
+    public void play(ActionEvent event){
+        player.play();
+    }
+
+    //pause
+    public void pause(ActionEvent event){
+        player.pause();
+    }
 
     public void gotomain() throws IOException {
         player.stop();
@@ -104,10 +111,12 @@ public class MiniView240p extends player{
     }
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadVideo240();
-        System.out.println(x);
+        connectDB.connect();
+        loadVideo();
+        System.out.println(sound);
     }
 
 

@@ -1,87 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXSlider?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.media.MediaView?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView320p">
+<AnchorPane maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" prefHeight="360.0" prefWidth="480.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.MiniView">
    <children>
-      <BorderPane prefHeight="360.0" prefWidth="346.0" styleClass="playarea" stylesheets="@player.css">
-         <center>
-            <MediaView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
-         <bottom>
-            <AnchorPane prefHeight="36.0" prefWidth="480.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" layoutX="369.0" layoutY="14.0" prefHeight="36.0" prefWidth="121.0">
-                     <children>
-                        <JFXButton text=" ">
-                           <graphic>
-                              <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/down.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton text=" ">
-                           <graphic>
-                              <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/up.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-                  <JFXSlider fx:id="playbar" layoutX="111.0" layoutY="25.0" prefHeight="14.0" prefWidth="258.0" value="0.1" />
-                  <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="121.0" AnchorPane.leftAnchor="0.0">
-                     <children>
-                        <JFXButton onAction="#play" text=" ">
-                           <graphic>
-                              <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/play.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton onAction="#pause" text=" ">
-                           <graphic>
-                              <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/pos.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-         </bottom>
-         <top>
-            <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="421.0" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton onAction="#gotomain" prefHeight="30.0" prefWidth="116.0" text="Back to  player" textFill="#0f9d58">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-               <BorderPane.margin>
-                  <Insets right="20.0" />
-               </BorderPane.margin>
-            </HBox>
-         </top>
-      </BorderPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MediaView fx:id="play" fitHeight="200.0" fitWidth="200.0" />
+         </children>
+      </HBox>
+      <JFXButton onAction="#gotomain" prefHeight="30.0" prefWidth="116.0" text="Back to  player" textFill="#0f9d58" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXSlider fx:id="playbar" prefHeight="14.0" prefWidth="258.0" value="0.1" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="10.0" />
+      <HBox alignment="CENTER" prefHeight="36.0" prefWidth="77.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <JFXButton onAction="#play" text=" ">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/play.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton onAction="#pause" text=" ">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/pos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
