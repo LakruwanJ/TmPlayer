@@ -48,7 +48,6 @@ public class DataList implements Initializable {
     int count;
     public String name;
 
-
     public void loadTb() throws SQLException {
 
         //sql part
@@ -57,10 +56,8 @@ public class DataList implements Initializable {
         pst = con.prepareStatement(p);
         rs = pst.executeQuery();
 
-        //
         String[] temp = {"","","","","",""};
         ObservableList<TableData1> list =  FXCollections.observableArrayList();
-
 
         while (rs.next()) {
 
@@ -72,6 +69,8 @@ public class DataList implements Initializable {
 
             list.add(new TableData1(temp[0],temp[1],temp[2],temp[3],temp[4]));
             rs_T.setItems(list);
+
+            count = count + 1;
 
         }
 
@@ -86,41 +85,43 @@ public class DataList implements Initializable {
     public void mainInfo() throws SQLException, IOException {
         vname.setText(player.fname);
         info.setText("     Played times : "+ count + "\tFull played duration : ");
-
     }
 
     public void txtfile() throws IOException, SQLException {
 
         //file generate
-        name = player.fname + "_" + LocalDate.now() +".txt";
-        System.out.println(name);
+        name = player.fname + "_" + LocalDate.now() + ".txt";
         File f = new File(name);
         f.createNewFile();
 
-
-        String[] temp = {"","","","","",""};
         FileWriter fw = new FileWriter(name);
         BufferedWriter fww = new BufferedWriter(fw);
-        fww.write("aaa");
-        fww.close();
+
+        //file write
+        fww.write("Video Name : "+ player.fname + "\n");
+        fww.write("Played times : "+ count + "\nFull played duration : \n\n");
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------+\n");
+        fww.write("| Starting Date" + "\t| Starting Time" + "\t| Ending Date" + "\t| Ending Time" + "\t| Duration \t|\n");
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------+\n");
 
         //sql part
-        String p = "select S_date,S_time,E_date,S_time,(E_time-S_time)/60 from watchvideo where VideoName = '"+ player.fname +"'";
+        String p = "select S_date,S_time,E_date,S_time,(E_time-S_time)/60 from watchvideo where VideoName = '" + player.fname + "'";
         con = connectDB.connect();
         pst = con.prepareStatement(p);
         rs = pst.executeQuery();
 
-
+        //write the data witch are in db
         while (rs.next()) {
-            temp[0] = rs.getString("S_date");
-            temp[1] = rs.getString("S_time");
-            temp[2] = rs.getString("E_date");
-            temp[3] = rs.getString("S_time");
-            temp[4] = rs.getString("(E_time-S_time)/60");
-
-            System.out.println(temp[0]);
+            fww.write(
+                "| " + rs.getString("S_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t| " + rs.getString("E_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t| " + rs.getString("(E_time-S_time)/60") +
+                "\t|\n");
         }
-
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------+\n");
+        fww.close();
     }
 
     @Override

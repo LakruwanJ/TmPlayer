@@ -26,8 +26,6 @@ public class TmPlayer extends Application {
             }
         });
 
-
-
         stage.setScene(scene);
         stage.show();
     }

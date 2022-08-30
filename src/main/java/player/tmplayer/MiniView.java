@@ -23,18 +23,16 @@ public class MiniView extends player{
 
     @FXML
     private MediaView play;
-
     @FXML
     private JFXSlider playbar;
-
-
     private MediaPlayer player;
     int x;
 
+    //constructor
     public MiniView() throws SQLException, IOException {
     }
 
-
+    //play video
     public void loadVideo(){
         if(path != null) {
             Media media = new Media(path);
@@ -65,6 +63,7 @@ public class MiniView extends player{
                     }
                 }
             });
+
             playbar.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -84,12 +83,10 @@ public class MiniView extends player{
                 public void run() {
                     Duration total = media.getDuration();
                     playbar.setMax(total.toSeconds());
-
                 }
             });
 
         }
-
 
     }
 
@@ -103,6 +100,7 @@ public class MiniView extends player{
         player.pause();
     }
 
+    //back
     public void gotomain() throws IOException {
         player.stop();
         nTime = x;
@@ -110,15 +108,12 @@ public class MiniView extends player{
         openNew.onlyOpen("player.fxml");
     }
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connectDB.connect();
         loadVideo();
         System.out.println(sound);
     }
-
 
 }
 

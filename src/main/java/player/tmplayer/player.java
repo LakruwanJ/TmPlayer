@@ -74,8 +74,6 @@ public class player implements Initializable {
     playTime Slidertime = new playTime();
 
     public player() throws SQLException, IOException {
-
-
     }
 
     //-------------------DataBase _ Start-------------------
@@ -120,7 +118,9 @@ public class player implements Initializable {
 
     //change db end time
     public void cedt() throws SQLException {
-        String q = "UPDATE watchvideo SET E_date = '" + LocalDate.now() +"', E_time = '" + LocalTime.now() +"' WHERE id = '"+ id +"'" ;
+        int k = id - 1;
+        String q = "UPDATE watchvideo SET E_date = '" + LocalDate.now() +"', E_time = '" + LocalTime.now() +"' WHERE id = '"+ k +"'" ;
+        getcon();
         pst = con.prepareStatement(q);
         pst.execute();
     }
@@ -133,13 +133,13 @@ public class player implements Initializable {
         FileChooser file = new FileChooser();
         File file1 = file.showOpenDialog(null);
 
-        //
         path = file1.toURI().toString();
         fname = file1.getName();
     }
 
     //load video
     public void loadVideo() throws SQLException {
+
         if(path != null) {
             Media media = new Media(path);
             player = new MediaPlayer(media);
@@ -202,12 +202,10 @@ public class player implements Initializable {
                     player.setVolume(soundbar.getValue()/100);
                     //set value to label
                     sound = (float) (soundbar.getValue()/100);
-                    System.out.println(sound);
                     int i = (int) soundbar.getValue();
                     vlevel.setText(String.valueOf(i));
                 }
             });
-
 
             mode.setText("Playing");
 
@@ -217,8 +215,6 @@ public class player implements Initializable {
             execute_(p);
 
         }
-
-
     }
 
     //open file
@@ -298,7 +294,7 @@ public class player implements Initializable {
         skipAndBack(60);
     }
 
-    //
+    //menu item playlist
     public void gotoplaylist() throws IOException {
         if (path!=null) {
             player.stop();
@@ -307,27 +303,29 @@ public class player implements Initializable {
         openNew.onlyOpen("Playlist.fxml");
     }
 
+    //menu item miniview 240
     public void goto240() throws IOException {
-        Duration d = Duration.seconds(playbar.getValue());
         sound =  (float) soundbar.getValue()/100;
         player.stop();
         mode.getScene().getWindow().hide();
         openNew.onlyOpen("MiniView240p.fxml");
     }
 
+    //menu item miniview 320
     public void goto320() throws IOException {
-        Duration d = Duration.seconds(playbar.getValue());
         sound = (int) soundbar.getValue();
         player.stop();
         mode.getScene().getWindow().hide();
         openNew.onlyOpen("MiniView320p.fxml");
     }
 
+    //menu item Analize
     public void gotoAnalize() throws IOException {
         modeSet = 1;
         openNew.onlyOpen("Login.fxml");
     }
 
+    //menu item History
     public void gotodata() throws IOException {
         modeSet = 2;
         if (path != null) {
@@ -335,6 +333,7 @@ public class player implements Initializable {
         }
     }
 
+    //menu item exit
     public void close() {
         if (path!=null) {
             player.stop();
@@ -343,9 +342,8 @@ public class player implements Initializable {
         mode.getScene().getWindow().hide();
     }
 
-    //set resent list
+    //set items to recent list
     public void rl() throws SQLException {
-
 
         String p = "select * from watchvideo order by ID desc limit 5";
         con = connectDB.connect();

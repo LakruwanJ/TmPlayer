@@ -43,7 +43,6 @@ public class Login implements Initializable {
         String q = "SELECT * FROM login where username=? and password=?";
         pst = con.prepareStatement(q);
 
-
         pst.setString(1, userName);
         pst.setString(2, passWord);
         rs = pst.executeQuery();
@@ -61,6 +60,7 @@ public class Login implements Initializable {
             e_all.setVisible(true);
             info[4] = "Unsuccessful";
         }
+
     }
 
     //add status to table
@@ -73,13 +73,14 @@ public class Login implements Initializable {
 
     //-------------------DataBase Area End-------------------
 
-
+    //hide error lables
     public void clearerror(){
         e_pw.setVisible(false);
         e_uname.setVisible(false);
         e_all.setVisible(false);
     }
 
+    //for login button
     public void login(ActionEvent event) throws IOException, SQLException {
 
         String userName = uname.getText();
@@ -112,6 +113,7 @@ public class Login implements Initializable {
 
     }
 
+    //for reset button
     public void reset(){
         clearerror();
         uname.setText("");

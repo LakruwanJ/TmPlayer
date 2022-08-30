@@ -35,7 +35,7 @@
                         <Menu mnemonicParsing="false" text="File">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#openfile" text="Open file" />
-                        <Menu mnemonicParsing="false" text="Resent list">
+                        <Menu mnemonicParsing="false" text="Recent list">
                           <items>
                             <MenuItem fx:id="rl1" mnemonicParsing="false" onAction="#play1" text="1" />
                                       <MenuItem fx:id="rl2" mnemonicParsing="false" onAction="#play2" text="2" />
@@ -63,7 +63,7 @@
                                 <MenuItem fx:id="mv240" mnemonicParsing="false" onAction="#goto240" text="Mini view 240p" />
                         <MenuItem fx:id="mv320" mnemonicParsing="false" onAction="#goto320" text="Mini view 320p" />
                                 <MenuItem mnemonicParsing="false" onAction="#gotoplaylist" text="Playlist" />
-                                <MenuItem mnemonicParsing="false" onAction="#gotodata" text="Get data list" />
+                                <MenuItem mnemonicParsing="false" onAction="#gotodata" text="History" />
                             </items>
                         </Menu>
                     </menus>

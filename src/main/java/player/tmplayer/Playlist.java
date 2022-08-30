@@ -53,7 +53,7 @@ public class Playlist extends player implements Initializable {
     String[] te = {"","","","","","","","","",""};
     String[] patharr = {"","","","","","","","","",""};
 
-
+    //get last id in db
     public void getLastId() throws SQLException {
         String p = "select * from watchvideo order by ID desc limit 10";
         con = connectDB.connect();
@@ -67,6 +67,7 @@ public class Playlist extends player implements Initializable {
         }
     }
 
+    //set value for button
     public void setname() throws SQLException {
         getLastId();
         v1.setText(te[0]);
@@ -79,12 +80,10 @@ public class Playlist extends player implements Initializable {
         v8.setText(te[7]);
         v9.setText(te[8]);
         v10.setText(te[9]);
-
     }
 
     public Playlist() throws SQLException, IOException {
     }
-
 
 
     //play video
@@ -138,11 +137,6 @@ public class Playlist extends player implements Initializable {
         v9.getScene().getWindow().hide();
         openNew.onlyOpen("player.fxml");
     }
-
-
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
