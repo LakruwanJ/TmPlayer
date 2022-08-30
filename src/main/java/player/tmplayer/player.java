@@ -65,7 +65,9 @@ public class player implements Initializable {
 
     public static String path;
     public static float sound;
-    private String fname;
+    public static String fname;
+
+    public static int modeSet;
     public String[] rl = {"","","","",""};
     public String[] rlPath = {"","","","",""};
     public MediaPlayer player;
@@ -321,8 +323,16 @@ public class player implements Initializable {
         openNew.onlyOpen("MiniView320p.fxml");
     }
 
-    public void gotologin() throws IOException {
+    public void gotoAnalize() throws IOException {
+        modeSet = 1;
         openNew.onlyOpen("Login.fxml");
+    }
+
+    public void gotodata() throws IOException {
+        modeSet = 2;
+        if (path != null) {
+            openNew.onlyOpen("DataList.fxml");
+        }
     }
 
     public void close() {

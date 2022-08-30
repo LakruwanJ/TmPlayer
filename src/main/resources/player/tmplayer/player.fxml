@@ -59,11 +59,11 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Option">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#gotologin" text="Admin panel" />
+                                <MenuItem mnemonicParsing="false" onAction="#gotoAnalize" text="Admin panel" />
                                 <MenuItem fx:id="mv240" mnemonicParsing="false" onAction="#goto240" text="Mini view 240p" />
                         <MenuItem fx:id="mv320" mnemonicParsing="false" onAction="#goto320" text="Mini view 320p" />
                                 <MenuItem mnemonicParsing="false" onAction="#gotoplaylist" text="Playlist" />
-                                <MenuItem mnemonicParsing="false" text="Get data list" />
+                                <MenuItem mnemonicParsing="false" onAction="#gotodata" text="Get data list" />
                             </items>
                         </Menu>
                     </menus>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.Playlist">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="playarea" stylesheets="@player.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="player.tmplayer.DataList">
    <children>
-      <HBox prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="70.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" prefHeight="112.0" prefWidth="700.0" text="TrustMe Player" textFill="#0f9d58" wrapText="true">
                <font>
@@ -18,7 +19,7 @@
             </Label>
          </children>
       </HBox>
-      <AnchorPane layoutY="80.0" prefHeight="422.0" prefWidth="700.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane layoutY="80.0" prefHeight="422.0" prefWidth="700.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <HBox prefHeight="42.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -27,14 +28,32 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="vname" prefHeight="26.0" prefWidth="521.0" text="User Name :     " textFill="#0f9d58" wrapText="true">
+                  <Label fx:id="vname" prefHeight="26.0" prefWidth="521.0" text="   " textFill="#0f9d58" wrapText="true">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <AnchorPane layoutY="42.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+            <HBox layoutY="42.0" prefHeight="42.0" prefWidth="560.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="42.0">
+               <children>
+                  <Label fx:id="info" prefHeight="26.0" prefWidth="561.0" text="     Info" textFill="#0f9d58" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="42.0" prefWidth="140.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+               <children>
+                  <JFXButton onAction="#txtfile" prefHeight="38.0" prefWidth="128.0" text="Get Text File" textFill="#0f9d58">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <AnchorPane layoutY="42.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="84.0">
                <children>
                   <TableView fx:id="rs_T" layoutX="10.0" layoutY="5.0" prefHeight="362.0" prefWidth="713.0" styleClass="playarea" stylesheets="@player.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                     <columns>

@@ -51,7 +51,11 @@ public class Login implements Initializable {
         if (rs.next()){
             info[4] = "Successful";
             uname.getScene().getWindow().hide();
-            openNew.onlyOpen("Analize.fxml");
+            if (player.modeSet==1){
+                openNew.onlyOpen("Analize.fxml");
+            } else if (player.modeSet==2){
+                openNew.onlyOpen("DataList.fxml");
+            }
         }else {
             e_all.setText("Username or Password incorrect");
             e_all.setVisible(true);

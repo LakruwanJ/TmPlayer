@@ -53,9 +53,6 @@ public class Playlist extends player implements Initializable {
     String[] te = {"","","","","","","","","",""};
     String[] patharr = {"","","","","","","","","",""};
 
-    public Playlist() throws SQLException, IOException {
-    }
-
 
     public void getLastId() throws SQLException {
         String p = "select * from watchvideo order by ID desc limit 10";
@@ -84,6 +81,11 @@ public class Playlist extends player implements Initializable {
         v10.setText(te[9]);
 
     }
+
+    public Playlist() throws SQLException, IOException {
+    }
+
+
 
     //play video
     public void b_v1() throws IOException {
