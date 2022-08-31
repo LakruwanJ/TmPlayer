@@ -157,7 +157,7 @@ public class Analyze {
             System.out.println("  User name --> \tPress 1");
             System.out.println("  Date --> \t\t\tPress 2");
             System.out.println("  Time --> \t\t\tPress 3");
-            System.out.println("  Status --> \tPress 4");
+            System.out.println("  Status --> \t\tPress 4");
 
             System.out.print("\nEnter your choice : ");
             sch2_ = scan.nextInt();
@@ -250,19 +250,19 @@ public class Analyze {
     public static void search1() throws SQLException {
         if (sch1_==1){
             cname = "VideoName";
-            sch_1(cname,sname);
+            sch_1();
         } else if (sch1_==2){
-            cname = "S_date";
-            sch_1(cname,sname);
+            cname = "S_ate";
+            sch_1();
         }  else if (sch1_==3){
             cname = "S_time";
-            sch_1(cname,sname);
+            sch_1();
         }else if (sch1_==4){
             cname = "E_date";
-            sch_1(cname,sname);
+            sch_1();
         }else if (sch1_==5){
             cname = "E_time";
-            sch_1(cname,sname);
+            sch_1();
         }else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
@@ -270,18 +270,20 @@ public class Analyze {
         }
     }
 
-    public static void search2(){
+    public static void search2() throws SQLException {
 
         if (sch2_==1){
-            //
+            cname = "usedName";
+            sch_2();
         } else if (sch2_==2){
-            //
-        } else if (sch2_==2){
-            //
+            cname = "Date";
+            sch_2();
         } else if (sch2_==3){
-            //
+            cname = "Time";
+            sch_2();
         }else if (sch2_==4){
-            //
+            cname = "Status";
+            sch_2();
         }else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
@@ -289,12 +291,15 @@ public class Analyze {
         }
     }
 
+
+    // ----------- Database controlling part start -------------
+
     public void execute_(String q) throws SQLException {
         pst = con.prepareStatement(q);
         pst.execute();
     }
 
-    public static void sch_1(String a,String b) throws SQLException {
+    public static void sch_1() throws SQLException {
 
         //sql part
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
@@ -333,7 +338,7 @@ public class Analyze {
             System.out.println(again);
             if (again == 1){
                 try {
-                    tsch_1(cname,sname);
+                    tsch_1();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -348,9 +353,8 @@ public class Analyze {
         while(j==0){
             System.out.print("\nDo you want run this again (Yes >> 1 / No  >> 2), Go to main >> 3 : ");
             textfile = scan.nextInt();
-            System.out.println(textfile);
             if (textfile == 1){
-                search1();
+                sch();
                 j = j + 1;
             } else if (textfile == 2){
                 j = j + 1;
@@ -362,11 +366,76 @@ public class Analyze {
 
     }
 
-    // ------------- Database controlling part end -------------
+    public static void sch_2() throws SQLException {
 
-    // ------------- Textfile creating part end -------------
+        //sql part
+        String q = "SELECT * FROM userlogin where " +cname+ " like \'%" +sname+ "%\'";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
 
-    public static void tsch_1(String a,String b) throws SQLException, IOException {
+        //printing part
+        System.out.println("+---------------+---------------+---------------+---------------");
+        System.out.println("| Date" + "\t\t\t| Time\t\t" + "\t| Status" + "\t\t| User Name");
+        System.out.println("+---------------+---------------+---------------+---------------");
+
+        while (rs.next()) {
+            System.out.println(
+                    "| " +
+                    rs.getString("Date")+"\t| "+
+                    rs.getString("Time")+"\t\t| "+
+                    rs.getString("Status")+"\t| "+
+                    rs.getString("usedName")+""
+            );
+            c = c + 1;
+        }
+        if (c==0){
+            System.out.println("|\t\t No content found");
+        }
+        System.out.println("+---------------+---------------+---------------+---------------");
+
+        //word file
+        int i = 0;
+        while(i==0){
+            System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
+            again = scan.nextInt();
+            System.out.println(again);
+            if (again == 1){
+                try {
+                    tsch_2();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i = i + 1;
+            } else if (again == 2){
+                i = i + 1;
+            }
+        }
+
+        //run again
+        int j = 0;
+        while(j==0){
+            System.out.print("\nDo you want run this again (Yes >> 1 / No  >> 2), Go to main >> 3 : ");
+            textfile = scan.nextInt();
+            if (textfile == 1){
+                sch();
+                j = j + 1;
+            } else if (textfile == 2){
+                j = j + 1;
+            } else if (textfile == 3){
+                main(null);
+                j = j + 1;
+            }
+        }
+
+    }
+
+    // ------------ Database controlling part end ---------------
+
+    // ------------- Textfile creating part start ---------------
+
+    public static void tsch_1() throws SQLException, IOException {
 
         //sql part
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
@@ -410,5 +479,49 @@ public class Analyze {
 
     }
 
+    public static void tsch_2() throws SQLException, IOException {
+
+        //sql part
+        String q = "SELECT * FROM userlogin where " +cname+ " like \'%" +sname+ "%\'";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        String[] temp = {"","","","","",""};
+
+        //file generate
+        name = "temp.txt";
+        File f = new File(name);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(name);
+        BufferedWriter fww = new BufferedWriter(fw);
+
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
+        fww.write("| Date" + "\t\t| Time\t" + "\t| Status" + "\t\t| User Name\n");
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
+
+        while (rs.next()) {
+
+            fww.write(
+                "| " +
+                rs.getString("Date")+"\t| "+
+                rs.getString("Time")+"\t\t| "+
+                rs.getString("Status")+"\t| "+
+                rs.getString("usedName")+"\n"
+            );
+            c = c + 1;
+        }
+
+        if (c==0){
+            fww.write("|\t\t No content found");
+        }
+        fww.write("+-----------------+-----------------+-----------------+--------------------");
+        fww.close();
+
+    }
+
+
+    // ------------- Textfile creating part end ---------------
 
 }
