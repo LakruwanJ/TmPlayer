@@ -126,13 +126,13 @@ public class Analyze {
 
             System.out.print("\nEnter your choice : ");
             sch1_ = scan.nextInt();
-            if (sch_==2 || sch_==4){
+            if (sch1_==2 || sch1_==4){
                 System.out.println("(Date format :- YYYY-MM-DD)");
                 System.out.print("Enter the Date : ");
-            } else if (sch_==2 || sch_==4){
+            } else if (sch1_==2 || sch1_==4){
                 System.out.println("(Time format :- HH:MM:SS)");
                 System.out.print("Enter the Time : ");
-            } else if (sch_==5){
+            } else if (sch1_==5){
                 System.out.print("Enter the key word : ");
             }
 
@@ -231,12 +231,16 @@ public class Analyze {
             sch_1(cname,sname);
         } else if (sch1_==2){
             cname = "S_date";
+            sch_1(cname,sname);
         }  else if (sch1_==3){
             cname = "S_time";
+            sch_1(cname,sname);
         }else if (sch1_==4){
             cname = "E_date";
+            sch_1(cname,sname);
         }else if (sch1_==5){
             cname = "E_time";
+            sch_1(cname,sname);
         }else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
