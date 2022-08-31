@@ -8,42 +8,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.concurrent.SynchronousQueue;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 
 public class Playlist extends player implements Initializable {
     @FXML
-    private JFXButton btp;
-
-    @FXML
     private JFXButton v1;
-
     @FXML
     private JFXButton v2;
-
     @FXML
     private JFXButton v3;
-
     @FXML
     private JFXButton v4;
-
     @FXML
     private JFXButton v5;
-
     @FXML
     private JFXButton v6;
-
     @FXML
     private JFXButton v7;
-
     @FXML
     private JFXButton v8;
-
     @FXML
     private JFXButton v9;
-
     @FXML
     private JFXButton v10;
 
@@ -53,8 +40,8 @@ public class Playlist extends player implements Initializable {
     String[] te = {"","","","","","","","","",""};
     String[] patharr = {"","","","","","","","","",""};
 
-    //get last id in db
-    public void getLastId() throws SQLException {
+    //get last id in db and 10 items
+    public void getnames() throws SQLException {
         String p = "select * from watchvideo order by ID desc limit 10";
         con = connectDB.connect();
         pst = con.prepareStatement(p);
@@ -69,7 +56,7 @@ public class Playlist extends player implements Initializable {
 
     //set value for button
     public void setname() throws SQLException {
-        getLastId();
+        getnames();
         v1.setText(te[0]);
         v2.setText(te[1]);
         v3.setText(te[2]);
@@ -141,7 +128,7 @@ public class Playlist extends player implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            getLastId();
+            getnames();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

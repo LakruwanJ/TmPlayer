@@ -47,7 +47,6 @@ public class MiniView extends player{
 
             player.play();
             player.setVolume(sound);
-            System.out.println(sound);
 
             //slider
             player.currentTimeProperty().addListener(new ChangeListener<Duration>() {

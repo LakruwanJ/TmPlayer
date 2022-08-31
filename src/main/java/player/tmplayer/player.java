@@ -329,7 +329,7 @@ public class player implements Initializable {
     public void gotodata() throws IOException {
         modeSet = 2;
         if (path != null) {
-            openNew.onlyOpen("DataList.fxml");
+            openNew.onlyOpen("Login.fxml");
         }
     }
 
@@ -338,7 +338,6 @@ public class player implements Initializable {
         if (path!=null) {
             player.stop();
         }
-
         mode.getScene().getWindow().hide();
     }
 
