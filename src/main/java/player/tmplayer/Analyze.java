@@ -13,8 +13,13 @@ public class Analyze {
     public static int sch2_;
     public static Scanner scan = new Scanner(System.in);
     public static Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    static PreparedStatement pst = null;
+    static ResultSet rs = null;
+
+    //variable for search
+    public static String cname;
+    public static String sname;
+
 
     public Analyze(){
         con = connectDB.connect();
@@ -81,6 +86,19 @@ public class Analyze {
             System.out.println("|                         ~ Developing Team Members ~                          |");
             System.out.println("+------------------------------------------------------------------------------+");
             System.out.println("|                                                                              |");
+            System.out.println("|\t* Fathima Saliha \t\t\t0742291277                                     |");
+            System.out.println("|\t* Lakruwan Jayathissa \t\t0772529441                                     |");
+            System.out.println("|\t* Hashini Sulakshana \t\t0701259920                                     |");
+            System.out.println("|\t* Niwandi Githma \t\t\t0716515705                                     |");
+            System.out.println("|\t* Thakshila Dulanjani \t\t0762915371                                     |");
+            System.out.println("|                                                                              |");
+            System.out.println("+------------------------------------------------------------------------------+");
+
+
+
+
+
+
         } else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
@@ -202,7 +220,6 @@ public class Analyze {
 
     public static void search1(){
         if (sch1_==1){
-            //
         } else if (sch1_==2){
             //
         } else if (sch1_==2){
@@ -221,6 +238,7 @@ public class Analyze {
     }
 
     public static void search2(){
+
         if (sch2_==1){
             //
         } else if (sch2_==2){
@@ -242,6 +260,20 @@ public class Analyze {
         pst = con.prepareStatement(q);
         pst.execute();
     }
+/*
+    public static void seh_1() throws SQLException {
+
+        String q = "SELECT * FROM login where " + + "like %" + + "%";
+
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+
+
+        if (rs.next()){
+            }
+        }else {
+    }*/
 
     // ------------- Database controlling part end -------------
 
