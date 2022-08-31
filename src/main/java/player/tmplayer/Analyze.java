@@ -1,5 +1,9 @@
 package player.tmplayer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +23,9 @@ public class Analyze {
     //variable for search
     public static String cname;
     public static String sname;
+    public static int again;
+    public static int textfile;
+    public static String name;
     public static String[] info = {"","","","",""};
 
 
@@ -289,40 +296,119 @@ public class Analyze {
 
     public static void sch_1(String a,String b) throws SQLException {
 
+        //sql part
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
         int c = 0;
-
         con = connectDB.connect();
         pst = con.prepareStatement(q);
         rs = pst.executeQuery();
 
-        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------");
-        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date" + "\t| End Time" + "\t| Duration" + "\t| Video Name");
-        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------");
+        //printing part
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name");
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
 
         while (rs.next()) {
-
             System.out.println(
-                    rs.getString("S_date")+"\t|"+
-                    rs.getString("S_time")+"\t|"+
-                    rs.getString("E_date")+"\t|"+
-                    rs.getString("E_time")+"\t|"+
+                    "| " +
+                    rs.getString("S_date")+"\t| "+
+                    rs.getString("S_time")+"\t\t| "+
+                    rs.getString("E_date")+"\t| "+
+                    rs.getString("E_time")+"\t\t| "+
+                    "\t\t\t\t| "+
                     rs.getString("VideoName")
             );
             c = c + 1;
         }
         if (c==0){
-            System.out.println("|\t\t No contain found");
-
+            System.out.println("|\t\t No content found");
         }
-        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------\n");
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
 
-        System.out.print("\nDo you need text file for this (y/n) :");
-        System.out.print("\nDo you want run this again (y/n), Go to main > m :");
+        //word file
+        int i = 0;
+        while(i==0){
+            System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
+            again = scan.nextInt();
+            System.out.println(again);
+            if (again == 1){
+                try {
+                    tsch_1(cname,sname);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i = i + 1;
+            } else if (again == 2){
+                i = i + 1;
+            }
+        }
+
+        //run again
+        int j = 0;
+        while(j==0){
+            System.out.print("\nDo you want run this again (Yes >> 1 / No  >> 2), Go to main >> 3 : ");
+            textfile = scan.nextInt();
+            System.out.println(textfile);
+            if (textfile == 1){
+                search1();
+                j = j + 1;
+            } else if (textfile == 2){
+                j = j + 1;
+            } else if (textfile == 3){
+                main(null);
+                j = j + 1;
+            }
+        }
 
     }
 
     // ------------- Database controlling part end -------------
+
+    // ------------- Textfile creating part end -------------
+
+    public static void tsch_1(String a,String b) throws SQLException, IOException {
+
+        //sql part
+        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        String[] temp = {"","","","","",""};
+
+        //file generate
+        name = "temp.txt";
+        File f = new File(name);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(name);
+        BufferedWriter fww = new BufferedWriter(fw);
+
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+        fww.write("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name\n");
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+
+        while (rs.next()) {
+
+            fww.write(
+                "| " + rs.getString("S_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t| " + rs.getString("E_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t\t|"+
+                "\t\t| " + rs.getString("VideoName") +
+                "\n"
+            );
+            c = c + 1;
+        }
+
+        if (c==0){
+            fww.write("|\t\t No content found");
+        }
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+        fww.close();
+
+    }
 
 
 }

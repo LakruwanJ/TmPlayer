@@ -51,7 +51,7 @@ public class DataList implements Initializable {
     public void loadTb() throws SQLException {
 
         //sql part
-        String p = "select S_date,S_time,E_date,S_time,(E_time-S_time)/60 from watchvideo where VideoName = '"+ player.fname +"'";
+        String p = "select S_date,S_time,E_date,E_time,(E_time-S_time)/60 from watchvideo where VideoName = '"+ player.fname +"'";
         con = connectDB.connect();
         pst = con.prepareStatement(p);
         rs = pst.executeQuery();
@@ -84,7 +84,7 @@ public class DataList implements Initializable {
 
     public void mainInfo() throws SQLException, IOException {
         vname.setText(player.fname);
-        info.setText("     Played times : "+ count + "\tFull played duration : ");
+        info.setText("     Played times : "+ count + "\tTotal played time : ");
     }
 
     public void txtfile() throws IOException, SQLException {
@@ -99,13 +99,13 @@ public class DataList implements Initializable {
 
         //file write
         fww.write("Video Name : "+ player.fname + "\n");
-        fww.write("Played times : "+ count + "\nFull played duration : \n\n");
+        fww.write("Played times : "+ count + "\nTotal played time : \n\n");
         fww.write("+-----------------+-----------------+-----------------+-----------------+-----------+\n");
         fww.write("| Starting Date" + "\t| Starting Time" + "\t| Ending Date" + "\t| Ending Time" + "\t| Duration \t|\n");
         fww.write("+-----------------+-----------------+-----------------+-----------------+-----------+\n");
 
         //sql part
-        String p = "select S_date,S_time,E_date,S_time,(E_time-S_time)/60 from watchvideo where VideoName = '" + player.fname + "'";
+        String p = "select S_date,S_time,E_date,E_time,(E_time-S_time)/60 from watchvideo where VideoName = '" + player.fname + "'";
         con = connectDB.connect();
         pst = con.prepareStatement(p);
         rs = pst.executeQuery();

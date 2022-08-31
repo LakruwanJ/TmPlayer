@@ -56,7 +56,7 @@ public class Login implements Initializable {
                 openNew.onlyOpen("DataList.fxml");
             }
         }else {
-            e_all.setText("Username or Password incorrect");
+            e_all.setText("Username or Password is incorrect");
             e_all.setVisible(true);
             info[4] = "Unsuccessful";
         }
