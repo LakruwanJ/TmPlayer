@@ -130,7 +130,7 @@ public class Analyze {
             if (sch1_==2 || sch1_==4){
                 System.out.println("(Date format :- YYYY-MM-DD)");
                 System.out.print("Enter the Date : ");
-            } else if (sch1_==2 || sch1_==4){
+            } else if (sch1_==3 || sch1_==5){
                 System.out.println("(Time format :- HH:MM:SS)");
                 System.out.print("Enter the Time : ");
             } else if (sch1_==1){
@@ -148,12 +148,26 @@ public class Analyze {
             System.out.println(" *----- Table with login history");
             System.out.println("Select the required column name : ");
             System.out.println("  User name --> \tPress 1");
-            System.out.println("  Date --> \tPress 2");
-            System.out.println("  Time --> \tPress 3");
+            System.out.println("  Date --> \t\t\tPress 2");
+            System.out.println("  Time --> \t\t\tPress 3");
             System.out.println("  Status --> \tPress 4");
 
             System.out.print("\nEnter your choice : ");
             sch2_ = scan.nextInt();
+
+            if (sch2_==2){
+                System.out.println("(Date format :- YYYY-MM-DD)");
+                System.out.print("Enter the Date : ");
+            } else if (sch2_==3){
+                System.out.println("(Time format :- HH:MM:SS)");
+                System.out.print("Enter the Time : ");
+            } else if (sch2_==1){
+                System.out.print("Enter the key word : ");
+            }else if (sch2_==4){
+                System.out.print("Enter the Successful/Unsuccessful : ");
+            }
+
+            sname = scan.next();
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
 
             search2();
@@ -282,31 +296,26 @@ public class Analyze {
         pst = con.prepareStatement(q);
         rs = pst.executeQuery();
 
-
-        System.out.println("+-----------------++-----------------+-----------------+-----------------+-----------------+-----------+\n");
-        System.out.println("| Video Name"+ "\t| Starting Date"  + "\t| Starting Time" + "\t| End Date" + "\t| End Time" + "\t| Duration \t|\n");
-        System.out.println("+-----------------++-----------------+-----------------+-----------------+-----------------+-----------+\n");
+        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------");
+        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date" + "\t| End Time" + "\t| Duration" + "\t| Video Name");
+        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------");
 
         while (rs.next()) {
 
             System.out.println(
-                    rs.getString("VideoName")+
-
-                    rs.getString("S_date")+
-
-                    rs.getString("S_time")+
-
-                    rs.getString("E_date")+
-
-                    rs.getString("E_time")
+                    rs.getString("S_date")+"\t|"+
+                    rs.getString("S_time")+"\t|"+
+                    rs.getString("E_date")+"\t|"+
+                    rs.getString("E_time")+"\t|"+
+                    rs.getString("VideoName")
             );
-
             c = c + 1;
+        }
+        if (c==0){
+            System.out.println("|\t\t No contain found");
 
         }
-
-
-
+        System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------\n");
 
     }
 
