@@ -317,6 +317,9 @@ public class Analyze {
         }
         System.out.println("+---------------+---------------+-----------+-----------+-----------+-------------------------\n");
 
+        System.out.print("\nDo you need text file for this (y/n) :");
+        System.out.print("\nDo you want run this again (y/n), Go to main > m :");
+
     }
 
     // ------------- Database controlling part end -------------
