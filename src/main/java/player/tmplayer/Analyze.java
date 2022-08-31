@@ -19,6 +19,7 @@ public class Analyze {
     //variable for search
     public static String cname;
     public static String sname;
+    public static String[] info = {"","","","",""};
 
 
     public Analyze(){
@@ -26,7 +27,7 @@ public class Analyze {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
 
         /* System.out.println("+*----------*----------*----------*----------*----------*----------*----------*+");
@@ -94,11 +95,6 @@ public class Analyze {
             System.out.println("|                                                                              |");
             System.out.println("+------------------------------------------------------------------------------+");
 
-
-
-
-
-
         } else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
@@ -107,7 +103,7 @@ public class Analyze {
 
     }
 
-    public static void sch(){
+    public static void sch() throws SQLException {
 
         System.out.println(" *----- Search");
         System.out.println("Select the proper table :");
@@ -130,6 +126,8 @@ public class Analyze {
 
             System.out.print("\nEnter your choice : ");
             sch1_ = scan.nextInt();
+            System.out.print("\nEnter the key word : ");
+            sname = scan.next();
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
 
             search1();
@@ -218,18 +216,18 @@ public class Analyze {
 
     }
 
-    public static void search1(){
+    public static void search1() throws SQLException {
         if (sch1_==1){
+            cname = "VideoName";
+            sch_1(cname,sname);
         } else if (sch1_==2){
-            //
-        } else if (sch1_==2){
-            //
-        } else if (sch1_==3){
-            //
+            cname = "S_date";
+        }  else if (sch1_==3){
+            cname = "S_time";
         }else if (sch1_==4){
-            //
+            cname = "E_date";
         }else if (sch1_==5){
-            //
+            cname = "E_time";
         }else {
             System.out.println("Enter the valid input ");
             System.out.println("********************************************************************************\n");
@@ -260,20 +258,33 @@ public class Analyze {
         pst = con.prepareStatement(q);
         pst.execute();
     }
-/*
-    public static void seh_1() throws SQLException {
 
-        String q = "SELECT * FROM login where " + + "like %" + + "%";
+    public static void sch_1(String a,String b) throws SQLException {
 
+        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+
+        con = connectDB.connect();
         pst = con.prepareStatement(q);
         rs = pst.executeQuery();
 
+        while (rs.next()) {
+
+            System.out.println(
+                    rs.getString("VideoName")+
+
+                    rs.getString("S_date")+
+
+                    rs.getString("S_time")+
+
+                    rs.getString("E_date")+
+
+                    rs.getString("E_time")
+            );
+
+        }
 
 
-        if (rs.next()){
-            }
-        }else {
-    }*/
+    }
 
     // ------------- Database controlling part end -------------
 
