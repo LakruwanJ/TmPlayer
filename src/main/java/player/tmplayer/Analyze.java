@@ -126,13 +126,14 @@ public class Analyze {
 
             System.out.print("\nEnter your choice : ");
             sch1_ = scan.nextInt();
+
             if (sch1_==2 || sch1_==4){
                 System.out.println("(Date format :- YYYY-MM-DD)");
                 System.out.print("Enter the Date : ");
             } else if (sch1_==2 || sch1_==4){
                 System.out.println("(Time format :- HH:MM:SS)");
                 System.out.print("Enter the Time : ");
-            } else if (sch1_==5){
+            } else if (sch1_==1){
                 System.out.print("Enter the key word : ");
             }
 
