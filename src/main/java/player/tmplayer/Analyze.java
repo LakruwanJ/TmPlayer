@@ -25,6 +25,7 @@ public class Analyze {
     public static String sname;
     public static int again;
     public static int textfile;
+    public static int limit;
     public static String name;
     public static String[] info = {"","","","",""};
 
@@ -73,16 +74,18 @@ public class Analyze {
             // 3 - Watch History
             System.out.println(" *----- Watch History");
             System.out.print("\nEnter the number of rows : ");
-            int sch_ = scan.nextInt();
+            limit = scan.nextInt();
             System.out.println("\n- - - -------------------------------------------------------------------- - - +\n");
+            w_his();
 
         }else if (option_ == 4){
 
             // 4 - Login History
             System.out.println(" *----- Login History");
             System.out.print("\nEnter the number of rows : ");
-            int sch_ = scan.nextInt();
+            limit = scan.nextInt();
             System.out.println("\n- - - -------------------------------------------------------------------- - - +\n");
+            l_his();
 
         }else if (option_ == 5){
 
@@ -431,6 +434,131 @@ public class Analyze {
 
     }
 
+    public static void w_his() throws SQLException {
+
+        String q = "SELECT * FROM watchvideo order by ID desc limit "+limit+"";
+        System.out.println(q);
+
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        //printing part
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name");
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+
+        while (rs.next()) {
+            System.out.println(
+                    "| " +
+                    rs.getString("S_date")+"\t| "+
+                    rs.getString("S_time")+"\t\t| "+
+                    rs.getString("E_date")+"\t| "+
+                    rs.getString("E_time")+"\t\t| "+
+                    "\t\t\t\t| "+
+                    rs.getString("VideoName")
+            );
+            c = c + 1;
+        }
+        if (c==0){
+            System.out.println("|\t\t No content found");
+        }
+        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+
+        //word file
+        int i = 0;
+        while(i==0){
+            System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
+            again = scan.nextInt();
+            System.out.println(again);
+            if (again == 1){
+                try {
+                    tw_his();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i = i + 1;
+            } else if (again == 2){
+                i = i + 1;
+            }
+        }
+
+        //go to main
+        int j = 0;
+        while(j==0){
+            System.out.print("\nGo to main >> 1 : ");
+            textfile = scan.nextInt();
+            if (textfile == 1) {
+                main(null);
+                j = j + 1;
+            }else{
+                j = j + 1;
+            }
+        }
+
+    }
+
+    public static void l_his() throws SQLException {
+
+        String q ="SELECT * FROM userlogin order by Date desc limit "+ limit +"";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        //printing part
+        System.out.println("+---------------+---------------+---------------+---------------");
+        System.out.println("| Date" + "\t\t\t| Time\t\t" + "\t| Status" + "\t\t| User Name");
+        System.out.println("+---------------+---------------+---------------+---------------");
+
+        while (rs.next()) {
+            System.out.println(
+                    "| " +
+                            rs.getString("Date")+"\t| "+
+                            rs.getString("Time")+"\t\t| "+
+                            rs.getString("Status")+"\t| "+
+                            rs.getString("usedName")+""
+            );
+            c = c + 1;
+        }
+        if (c==0){
+            System.out.println("|\t\t No content found");
+        }
+        System.out.println("+---------------+---------------+---------------+---------------");
+
+        //word file
+        int i = 0;
+        while(i==0){
+            System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
+            again = scan.nextInt();
+            System.out.println(again);
+            if (again == 1){
+                try {
+                    tl_his();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i = i + 1;
+            } else if (again == 2){
+                i = i + 1;
+            }
+        }
+
+        //go to main
+        int j = 0;
+        while(j==0){
+            System.out.print("\nGo to main >> 1 : ");
+            textfile = scan.nextInt();
+            if (textfile == 1) {
+                main(null);
+                j = j + 1;
+            }else{
+                j = j + 1;
+            }
+        }
+
+    }
     // ------------ Database controlling part end ---------------
 
     // ------------- Textfile creating part start ---------------
@@ -438,7 +566,7 @@ public class Analyze {
     public static void tsch_1() throws SQLException, IOException {
 
         //sql part
-        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        String q = "SELECT * FROM userlogin limit '"+ limit +"' ";
         int c = 0;
         con = connectDB.connect();
         pst = con.prepareStatement(q);
@@ -521,6 +649,90 @@ public class Analyze {
 
     }
 
+    public static void tw_his() throws SQLException, IOException {
+        //sql part
+        String q = "SELECT * FROM watchvideo order by ID desc limit "+ limit +"";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        String[] temp = {"","","","","",""};
+
+        //file generate
+        name = "temp.txt";
+        File f = new File(name);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(name);
+        BufferedWriter fww = new BufferedWriter(fw);
+
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+        fww.write("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name\n");
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+
+        while (rs.next()) {
+
+            fww.write(
+                    "| " + rs.getString("S_date") +
+                            "\t| " + rs.getString("S_time") +
+                            "\t\t| " + rs.getString("E_date") +
+                            "\t| " + rs.getString("S_time") +
+                            "\t\t\t|"+
+                            "\t\t| " + rs.getString("VideoName") +
+                            "\n"
+            );
+            c = c + 1;
+        }
+
+        if (c==0){
+            fww.write("|\t\t No content found");
+        }
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+        fww.close();
+
+    }
+
+
+    public static void tl_his() throws SQLException, IOException {
+        //sql part
+        String q ="SELECT * FROM userlogin order by Date desc limit "+ limit +"";
+        int c = 0;
+        con = connectDB.connect();
+        pst = con.prepareStatement(q);
+        rs = pst.executeQuery();
+
+        String[] temp = {"","","","","",""};
+
+        //file generate
+        name = "temp.txt";
+        File f = new File(name);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(name);
+        BufferedWriter fww = new BufferedWriter(fw);
+
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
+        fww.write("| Date" + "\t\t| Time\t" + "\t| Status" + "\t\t| User Name\n");
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
+
+        while (rs.next()) {
+
+            fww.write(
+                    "| " +
+                            rs.getString("Date")+"\t| "+
+                            rs.getString("Time")+"\t\t| "+
+                            rs.getString("Status")+"\t| "+
+                            rs.getString("usedName")+"\n"
+            );
+            c = c + 1;
+        }
+
+        if (c==0){
+            fww.write("|\t\t No content found");
+        }
+        fww.write("+-----------------+-----------------+-----------------+--------------------");
+        fww.close();
+
+    }
 
     // ------------- Textfile creating part end ---------------
 
