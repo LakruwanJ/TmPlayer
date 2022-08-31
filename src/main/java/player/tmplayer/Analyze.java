@@ -126,7 +126,16 @@ public class Analyze {
 
             System.out.print("\nEnter your choice : ");
             sch1_ = scan.nextInt();
-            System.out.print("\nEnter the key word : ");
+            if (sch_==2 || sch_==4){
+                System.out.println("(Date format :- YYYY-MM-DD)");
+                System.out.print("Enter the Date : ");
+            } else if (sch_==2 || sch_==4){
+                System.out.println("(Time format :- HH:MM:SS)");
+                System.out.print("Enter the Time : ");
+            } else if (sch_==5){
+                System.out.print("Enter the key word : ");
+            }
+
             sname = scan.next();
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
 
@@ -262,10 +271,16 @@ public class Analyze {
     public static void sch_1(String a,String b) throws SQLException {
 
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        int c = 0;
 
         con = connectDB.connect();
         pst = con.prepareStatement(q);
         rs = pst.executeQuery();
+
+
+        System.out.println("+-----------------++-----------------+-----------------+-----------------+-----------------+-----------+\n");
+        System.out.println("| Video Name"+ "\t| Starting Date"  + "\t| Starting Time" + "\t| End Date" + "\t| End Time" + "\t| Duration \t|\n");
+        System.out.println("+-----------------++-----------------+-----------------+-----------------+-----------------+-----------+\n");
 
         while (rs.next()) {
 
@@ -281,7 +296,11 @@ public class Analyze {
                     rs.getString("E_time")
             );
 
+            c = c + 1;
+
         }
+
+
 
 
     }
