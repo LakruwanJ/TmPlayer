@@ -114,8 +114,6 @@ public class player implements Initializable {
         return lid;
     }
 
-
-
     //change db end time
     public void cedt() throws SQLException {
         int k = id - 1;
@@ -210,8 +208,8 @@ public class player implements Initializable {
             mode.setText("Playing");
 
             //db
-            String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(path),String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime),fa,aa};
-            String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"', '"+ wv[8] +"', '"+ wv[8] +"')" ;
+            String[] wv = {String.valueOf(id),String.valueOf(fname),String.valueOf(fomat), String.valueOf(path),String.valueOf(sDate), String.valueOf(sTime), String.valueOf(eDate), String.valueOf(eTime)};
+            String p = "INSERT INTO watchvideo VALUES ('"+ wv[0] +"', '"+ wv[1] +"', '"+ wv[2] +"', '"+ wv[3] +"', '"+ wv[4] +"', '"+ wv[5] +"', '"+ wv[6] +"',  '"+ wv[7] +"')" ;
             execute_(p);
 
         }
