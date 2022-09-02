@@ -366,7 +366,7 @@ public class Analyze extends Analyze2{
 
         //sql part
         Analyze2 a2 = new Analyze2();
-        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
         a2.an2(q);
 
         //word file
@@ -515,7 +515,7 @@ public class Analyze extends Analyze2{
     public static void tl_his() throws SQLException, IOException {
 
         Analyze2 a4 = new Analyze2();
-        String q = "SELECT * FROM watchvideo order by ID desc limit "+ limit +"";
+        String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
         a4.an4(q);
 
     }
