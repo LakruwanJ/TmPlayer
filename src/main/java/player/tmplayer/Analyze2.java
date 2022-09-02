@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Analyze2 {
 
@@ -19,11 +18,6 @@ public class Analyze2 {
     //variable for search
     public static String name;
     public static String[] info = {"","","","",""};
-
-    //sql part
-    public void getCon(){
-        conn = connectDB.connect();
-    }
 
     //video table
     public void an(String q) throws SQLException {
@@ -125,36 +119,47 @@ public class Analyze2 {
         }
         fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
         fww.close();
+
+        System.out.println("Textfile generated");
     }
 
-    //login data table
-    public void an4(String q) throws SQLException {
+    //login data table >> text file
+    public void an4(String q) throws SQLException, IOException {
 
         int c = 0;
         conn = connectDB.connect();
         pst = conn.prepareStatement(q);
         rs = pst.executeQuery();
 
-        //printing part
-        System.out.println("+---------------+---------------+---------------+---------------");
-        System.out.println("| Date" + "\t\t\t| Time\t\t" + "\t| Status" + "\t\t| User Name");
-        System.out.println("+---------------+---------------+---------------+---------------");
+        //file generate
+        name = "temp.txt";
+        File f = new File(name);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(name);
+        BufferedWriter fww = new BufferedWriter(fw);
+
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
+        fww.write("| Date" + "\t\t| Time\t" + "\t| Status" + "\t\t| User Name\n");
+        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
 
         while (rs.next()) {
             System.out.println(
                 "| " +
-                rs.getString("Date")+"\t| "+
-                rs.getString("Time")+"\t\t| "+
-                rs.getString("Status")+"\t| "+
-                rs.getString("usedName")+""
+                rs.getString("Date") + "\t| " +
+                rs.getString("Time") + "\t\t| " +
+                rs.getString("Status") + "\t| " +
+                rs.getString("usedName") + ""
             );
             c = c + 1;
         }
-        if (c==0){
-            System.out.println("|\t\t No content found");
+        if (c == 0) {
+            fww.write("|\t\t No content found");
         }
-        System.out.println("+---------------+---------------+---------------+---------------");
-    }
+        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
+        fww.close();
 
+        System.out.println("Textfile generated");
+
+    }
 
 }

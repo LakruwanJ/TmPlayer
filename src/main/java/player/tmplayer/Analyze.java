@@ -1,12 +1,6 @@
 package player.tmplayer;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,9 +9,6 @@ public class Analyze extends Analyze2{
     public static int sch1_;
     public static int sch2_;
     public static Scanner scan = new Scanner(System.in);
-    public  static Connection con = null;
-    static PreparedStatement pst = null;
-    static ResultSet rs = null;
 
     //variable for search
     public static String cname;
@@ -25,8 +16,6 @@ public class Analyze extends Analyze2{
     public static int again;
     public static int textfile;
     public static int limit;
-    public static String name;
-    public static String[] info = {"","","","",""};
 
 
     public static void main(String[] args) throws SQLException {
@@ -384,16 +373,16 @@ public class Analyze extends Analyze2{
         int i = 0;
         while(i==0){
             System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
-            again = scan.nextInt();
+            textfile = scan.nextInt();
             System.out.println(again);
-            if (again == 1){
+            if (textfile == 1){
                 try {
                     tsch_2();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 i = i + 1;
-            } else if (again == 2){
+            } else if (textfile == 2){
                 i = i + 1;
             }
         }
@@ -402,13 +391,13 @@ public class Analyze extends Analyze2{
         int j = 0;
         while(j==0){
             System.out.print("\nDo you want run this again (Yes >> 1 / No  >> 2), Go to main >> 3 : ");
-            textfile = scan.nextInt();
-            if (textfile == 1){
+            again = scan.nextInt();
+            if (again == 1){
                 sch();
                 j = j + 1;
-            } else if (textfile == 2){
+            } else if (again == 2){
                 j = j + 1;
-            } else if (textfile == 3){
+            } else if (again == 3){
                 main(null);
                 j = j + 1;
             }
