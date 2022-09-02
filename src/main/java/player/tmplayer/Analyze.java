@@ -367,7 +367,7 @@ public class Analyze extends Analyze2{
         //sql part
         Analyze2 a2 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
-        a2.an(q);
+        a2.an2(q);
 
         //word file
         int i = 0;
@@ -448,7 +448,7 @@ public class Analyze extends Analyze2{
 
         String q ="SELECT * FROM userlogin order by Date desc limit "+ limit +"";
         Analyze2 a2 = new Analyze2();
-        a2.an(q);
+        a2.an2(q);
 
         //word file
         int i = 0;
@@ -492,7 +492,7 @@ public class Analyze extends Analyze2{
 
         Analyze2 a3 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " +cname+ " like '%" +sname+ "%'";
-        a3.an(q);
+        a3.an3(q);
 
     }
 
@@ -500,7 +500,7 @@ public class Analyze extends Analyze2{
 
         Analyze2 a4 = new Analyze2();
         String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
-        a4.an(q);
+        a4.an4(q);
 
     }
 
@@ -508,7 +508,7 @@ public class Analyze extends Analyze2{
 
         Analyze2 a3 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " +cname+ " like '%" +sname+ "%'";
-        a3.an(q);
+        a3.an3(q);
 
     }
 
@@ -516,7 +516,7 @@ public class Analyze extends Analyze2{
 
         Analyze2 a4 = new Analyze2();
         String q = "SELECT * FROM watchvideo order by ID desc limit "+ limit +"";
-        a4.an(q);
+        a4.an4(q);
 
     }
 
