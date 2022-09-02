@@ -12,8 +12,6 @@ import java.util.Scanner;
 
 public class Analyze extends Analyze2{
 
-
-
     public static int sch1_;
     public static int sch2_;
     public static Scanner scan = new Scanner(System.in);
@@ -31,26 +29,13 @@ public class Analyze extends Analyze2{
     public static String[] info = {"","","","",""};
 
 
-    public Analyze(){
-        con = connectDB.connect();
-    }
-
-    public class Filew{
-
-    }
-
     public static void main(String[] args) throws SQLException {
-
-
-        /* System.out.println("+*----------*----------*----------*----------*----------*----------*----------*+");
-        System.out.println("********************************************************************************");
-        System.out.println("+*          *----------*----------*----------*----------*----------*----------*+");*/
 
         //start
         System.out.println("+------------------------------------------------------------------------------+");
         System.out.println("|                            >>> TrustMe Player <<<                            |");
         System.out.println("|                      *--------------------------------*                      |");
-        System.out.println("|                         ~ All You Gotta Do TrustMe ~                         |");
+        System.out.println("|                       ~ All You Gotta Do is TrustMe ~                        |");
         System.out.println("+ - - -------------------------------------------------------------------- - - +\n\n");
 
         // main options
@@ -173,7 +158,7 @@ public class Analyze extends Analyze2{
             } else if (sch2_==1){
                 System.out.print("Enter the key word : ");
             }else if (sch2_==4){
-                System.out.print("Enter the value /(Successful/Unsuccessful/) : ");
+                System.out.print("Enter the value (Successful/Unsuccessful) : ");
             }
 
             sname = scan.next();
@@ -189,7 +174,7 @@ public class Analyze extends Analyze2{
 
     }
 
-    public static void al(){
+    public static void al() throws SQLException {
         // 2 - Analyze
         System.out.println(" *----- Get Analyze List");
         System.out.println("Which time period do you prefer ?");
@@ -205,37 +190,54 @@ public class Analyze extends Analyze2{
         int ana = scan.nextInt();
         System.out.println("\n- - - -------------------------------------------------------------------------+\n");
 
+        String q = null;
+        
         if (ana==1){
+
+            q = "SELECT * FROM watchvideo ORDER BY S_ime DESC'";
 
         } else if (ana==2) {
 
+            q = "SELECT * FROM watchvideo ORDER BY date(S_date) DESC'";
+
         } else if (ana==3) {
 
+            q = "SELECT * FROM watchvideo ORDER BY month(S_date) DESC'";
+
         } else if (ana==4) {
+
+            q = "SELECT * FROM watchvideo ORDER BY year(S_date) DESC'";
 
         } else if (ana==5) {
             // 2 - 5 - Analyze
             System.out.println(" *----- Details of a hour");
             System.out.print("\nEnter the required hour: ");
             int a = scan.nextInt();
+            q = "SELECT * FROM watchvideo where hour(S_date) = " + a;
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
         } else if (ana==6) {
             // 2 - 6 - Analyze
             System.out.println(" *----- Details of a day");
             System.out.print("\nEnter the required day: ");
             int a = scan.nextInt();
+            System.out.println("(format :- 1,2,3...30,31)");
+            q = "SELECT * FROM watchvideo where day(S_date) = " + a;
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
         } else if (ana==7) {
             // 2 - 7 - Analyze
             System.out.println(" *----- Details of a month");
             System.out.print("\nEnter the required month: ");
+            System.out.println("(format :- 1,2,3...23,24)");
             int a = scan.nextInt();
+            q = "SELECT * FROM watchvideo where month(S_date) = " + a;
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
         } else if (ana==8) {
             // 2 - 8 - Analyze
             System.out.println(" *----- Details of a year");
             System.out.print("\nEnter the required year: ");
+            System.out.println("(format :- 2022,2023...)");
             int a = scan.nextInt();
+            q = "SELECT * FROM watchvideo where year(S_date) = " + a;
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
         } else {
             System.out.println("Enter the valid input ");
@@ -243,8 +245,44 @@ public class Analyze extends Analyze2{
             al();
         }
 
-    }
+        Analyze2 a2 = new Analyze2();
+        a2.an(q);
 
+        //word file
+        int i = 0;
+        while(i==0){
+            System.out.print("\nDo you need text file for this (Yes >> 1 / No  >> 2) : ");
+            again = scan.nextInt();
+            System.out.println(again);
+            if (again == 1){
+                try {
+                    tsch_1();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                i = i + 1;
+            } else if (again == 2){
+                i = i + 1;
+            }
+        }
+
+        //run again
+        int j = 0;
+        while(j==0){
+            System.out.print("\nDo you want run this again (Yes >> 1 / No  >> 2), Go to main >> 3 : ");
+            textfile = scan.nextInt();
+            if (textfile == 1){
+                al();
+                j = j + 1;
+            } else if (textfile == 2){
+                j = j + 1;
+            } else if (textfile == 3){
+                main(null);
+                j = j + 1;
+            }
+        }
+
+    }
 
     public static void search1() throws SQLException {
         if (sch1_==1){
@@ -293,16 +331,10 @@ public class Analyze extends Analyze2{
 
     // ----------- Database controlling part start -------------
 
-    public void execute_(String q) throws SQLException {
-        pst = con.prepareStatement(q);
-        pst.execute();
-    }
-
     public static void sch_1() throws SQLException {
 
-
         Analyze2 a2 = new Analyze2();
-        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        String q = "SELECT * FROM watchvideo where " + cname + " like \'%" + sname + "%\'";
         a2.an(q);
 
         //word file
@@ -461,142 +493,41 @@ public class Analyze extends Analyze2{
         }
 
     }
+
     // ------------ Database controlling part end ---------------
+
 
     // ------------- Textfile creating part start ---------------
 
     public static void tsch_1() throws SQLException, IOException {
 
-        //sql part
+        Analyze2 a3 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " +cname+ " like '%" +sname+ "%'";
-
-
+        a3.an(q);
 
     }
 
     public static void tsch_2() throws SQLException, IOException {
 
-        //sql part
-        String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
-
-        String[] temp = {"","","","","",""};
-
-        //file generate
-        name = "temp.txt";
-        File f = new File(name);
-        f.createNewFile();
-        FileWriter fw = new FileWriter(name);
-        BufferedWriter fww = new BufferedWriter(fw);
-
-        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
-        fww.write("| Date" + "\t\t| Time\t" + "\t| Status" + "\t\t| User Name\n");
-        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
-
-        while (rs.next()) {
-
-            fww.write(
-                "| " +
-                rs.getString("Date")+"\t| "+
-                rs.getString("Time")+"\t\t| "+
-                rs.getString("Status")+"\t| "+
-                rs.getString("usedName")+"\n"
-            );
-            c = c + 1;
-        }
-
-        if (c==0){
-            fww.write("|\t\t No content found");
-        }
-        fww.write("+-----------------+-----------------+-----------------+--------------------");
-        fww.close();
+        Analyze2 a4 = new Analyze2();
+        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        a4.an(q);
 
     }
 
     public static void tw_his() throws SQLException, IOException {
-        //sql part
-        String q = "SELECT * FROM watchvideo order by ID desc limit "+ limit +"";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
 
-        String[] temp = {"","","","","",""};
-
-        //file generate
-        name = "temp.txt";
-        File f = new File(name);
-        f.createNewFile();
-        FileWriter fw = new FileWriter(name);
-        BufferedWriter fww = new BufferedWriter(fw);
-
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-        fww.write("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name\n");
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-
-        while (rs.next()) {
-
-            fww.write(
-                "| " + rs.getString("S_date") +
-                "\t| " + rs.getString("S_time") +
-                "\t\t| " + rs.getString("E_date") +
-                "\t| " + rs.getString("S_time") +
-                "\t\t\t|"+
-                "\t\t| " + rs.getString("VideoName") +
-                "\n"
-            );
-            c = c + 1;
-        }
-
-        if (c==0){
-            fww.write("|\t\t No content found");
-        }
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-        fww.close();
+        Analyze2 a3 = new Analyze2();
+        String q = "SELECT * FROM watchvideo where " +cname+ " like '%" +sname+ "%'";
+        a3.an(q);
 
     }
 
     public static void tl_his() throws SQLException, IOException {
-        //sql part
-        String q ="SELECT * FROM userlogin order by Date desc limit "+ limit +"";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
 
-        String[] temp = {"","","","","",""};
-
-        //file generate
-        name = "temp.txt";
-        File f = new File(name);
-        f.createNewFile();
-        FileWriter fw = new FileWriter(name);
-        BufferedWriter fww = new BufferedWriter(fw);
-
-        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
-        fww.write("| Date" + "\t\t| Time\t" + "\t| Status" + "\t\t| User Name\n");
-        fww.write("+-----------------+-----------------+-----------------+--------------------\n");
-
-        while (rs.next()) {
-
-            fww.write(
-                    "| " +
-                            rs.getString("Date")+"\t| "+
-                            rs.getString("Time")+"\t\t| "+
-                            rs.getString("Status")+"\t| "+
-                            rs.getString("usedName")+"\n"
-            );
-            c = c + 1;
-        }
-
-        if (c==0){
-            fww.write("|\t\t No content found");
-        }
-        fww.write("+-----------------+-----------------+-----------------+--------------------");
-        fww.close();
+        Analyze2 a4 = new Analyze2();
+        String q = "SELECT * FROM watchvideo order by ID desc limit "+ limit +"";
+        a4.an(q);
 
     }
 

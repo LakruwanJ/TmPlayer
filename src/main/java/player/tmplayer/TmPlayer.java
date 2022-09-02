@@ -30,8 +30,6 @@ public class TmPlayer extends Application {
         stage.show();
     }
 
-    public static String mainID="123abc@A";
-
     public static void main(String[] args) {
         launch();
     }

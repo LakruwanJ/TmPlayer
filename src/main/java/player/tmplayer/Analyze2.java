@@ -72,11 +72,11 @@ public class Analyze2 {
 
         while (rs.next()) {
             System.out.println(
-                    "| " +
-                            rs.getString("Date")+"\t| "+
-                            rs.getString("Time")+"\t\t| "+
-                            rs.getString("Status")+"\t| "+
-                            rs.getString("usedName")+""
+                "| " +
+                rs.getString("Date")+"\t| "+
+                rs.getString("Time")+"\t\t| "+
+                rs.getString("Status")+"\t| "+
+                rs.getString("usedName")+""
             );
             c = c + 1;
         }
@@ -85,6 +85,7 @@ public class Analyze2 {
         }
         System.out.println("+---------------+---------------+---------------+---------------");
     }
+
 
     //video table >> text file
     public void an3(String q) throws SQLException, IOException {
@@ -108,13 +109,13 @@ public class Analyze2 {
         while (rs.next()) {
 
             fww.write(
-                    "| " + rs.getString("S_date") +
-                            "\t| " + rs.getString("S_time") +
-                            "\t\t| " + rs.getString("E_date") +
-                            "\t| " + rs.getString("S_time") +
-                            "\t\t\t|"+
-                            "\t\t| " + rs.getString("VideoName") +
-                            "\n"
+                "| " + rs.getString("S_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t| " + rs.getString("E_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t\t|"+
+                 "\t\t| " + rs.getString("VideoName") +
+                 "\n"
             );
             c = c + 1;
         }
@@ -141,11 +142,11 @@ public class Analyze2 {
 
         while (rs.next()) {
             System.out.println(
-                    "| " +
-                            rs.getString("Date")+"\t| "+
-                            rs.getString("Time")+"\t\t| "+
-                            rs.getString("Status")+"\t| "+
-                            rs.getString("usedName")+""
+                "| " +
+                rs.getString("Date")+"\t| "+
+                rs.getString("Time")+"\t\t| "+
+                rs.getString("Status")+"\t| "+
+                rs.getString("usedName")+""
             );
             c = c + 1;
         }
@@ -154,8 +155,6 @@ public class Analyze2 {
         }
         System.out.println("+---------------+---------------+---------------+---------------");
     }
-
-
 
 
 }
