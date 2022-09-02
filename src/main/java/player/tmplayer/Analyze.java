@@ -8,15 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Analyze {
+public class Analyze extends Analyze2{
+
+
 
     public static int sch1_;
     public static int sch2_;
     public static Scanner scan = new Scanner(System.in);
-    public static Connection con = null;
+    public  static Connection con = null;
     static PreparedStatement pst = null;
     static ResultSet rs = null;
 
@@ -34,6 +35,9 @@ public class Analyze {
         con = connectDB.connect();
     }
 
+    public class Filew{
+
+    }
 
     public static void main(String[] args) throws SQLException {
 
@@ -55,8 +59,7 @@ public class Analyze {
         System.out.println("  Get Analyze List ---> \tPress 2");
         System.out.println("  Watch History ---> \t\tPress 3");
         System.out.println("  Login History ---> \t\tPress 4");
-        System.out.println("  Password Manager --->  \tPress 5");
-        System.out.println("  Developing team --->  \tPress 6");
+        System.out.println("  Developing team --->  \tPress 5");
         System.out.print("\nEnter your choice : ");
         int option_ = scan.nextInt();
         System.out.println("\n- - - -------------------------------------------------------------------------+\n");
@@ -88,10 +91,6 @@ public class Analyze {
             l_his();
 
         }else if (option_ == 5){
-
-            pm();
-
-        }else if (option_ == 6){
             System.out.println("+------------------------------------------------------------------------------+");
             System.out.println("|                            >>> TrustMe Player <<<                            |");
             System.out.println("|                         ~ Developing Team Members ~                          |");
@@ -174,7 +173,7 @@ public class Analyze {
             } else if (sch2_==1){
                 System.out.print("Enter the key word : ");
             }else if (sch2_==4){
-                System.out.print("Enter the Successful/Unsuccessful : ");
+                System.out.print("Enter the value /(Successful/Unsuccessful/) : ");
             }
 
             sname = scan.next();
@@ -246,9 +245,6 @@ public class Analyze {
 
     }
 
-    public static void pm(){
-
-    }
 
     public static void search1() throws SQLException {
         if (sch1_==1){
@@ -304,34 +300,10 @@ public class Analyze {
 
     public static void sch_1() throws SQLException {
 
-        //sql part
+
+        Analyze2 a2 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
-
-        //printing part
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
-        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name");
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
-
-        while (rs.next()) {
-            System.out.println(
-                    "| " +
-                    rs.getString("S_date")+"\t| "+
-                    rs.getString("S_time")+"\t\t| "+
-                    rs.getString("E_date")+"\t| "+
-                    rs.getString("E_time")+"\t\t| "+
-                    "\t\t\t\t| "+
-                    rs.getString("VideoName")
-            );
-            c = c + 1;
-        }
-        if (c==0){
-            System.out.println("|\t\t No content found");
-        }
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+        a2.an(q);
 
         //word file
         int i = 0;
@@ -372,31 +344,9 @@ public class Analyze {
     public static void sch_2() throws SQLException {
 
         //sql part
-        String q = "SELECT * FROM userlogin where " +cname+ " like \'%" +sname+ "%\'";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
-
-        //printing part
-        System.out.println("+---------------+---------------+---------------+---------------");
-        System.out.println("| Date" + "\t\t\t| Time\t\t" + "\t| Status" + "\t\t| User Name");
-        System.out.println("+---------------+---------------+---------------+---------------");
-
-        while (rs.next()) {
-            System.out.println(
-                    "| " +
-                    rs.getString("Date")+"\t| "+
-                    rs.getString("Time")+"\t\t| "+
-                    rs.getString("Status")+"\t| "+
-                    rs.getString("usedName")+""
-            );
-            c = c + 1;
-        }
-        if (c==0){
-            System.out.println("|\t\t No content found");
-        }
-        System.out.println("+---------------+---------------+---------------+---------------");
+        Analyze2 a2 = new Analyze2();
+        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        a2.an(q);
 
         //word file
         int i = 0;
@@ -437,34 +387,8 @@ public class Analyze {
     public static void w_his() throws SQLException {
 
         String q = "SELECT * FROM watchvideo order by ID desc limit "+limit+"";
-        System.out.println(q);
-
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
-
-        //printing part
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
-        System.out.println("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name");
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
-
-        while (rs.next()) {
-            System.out.println(
-                    "| " +
-                    rs.getString("S_date")+"\t| "+
-                    rs.getString("S_time")+"\t\t| "+
-                    rs.getString("E_date")+"\t| "+
-                    rs.getString("E_time")+"\t\t| "+
-                    "\t\t\t\t| "+
-                    rs.getString("VideoName")
-            );
-            c = c + 1;
-        }
-        if (c==0){
-            System.out.println("|\t\t No content found");
-        }
-        System.out.println("+---------------+---------------+---------------+---------------+---------------+-------------------------");
+        Analyze2 a2 = new Analyze2();
+        a2.an(q);
 
         //word file
         int i = 0;
@@ -502,30 +426,8 @@ public class Analyze {
     public static void l_his() throws SQLException {
 
         String q ="SELECT * FROM userlogin order by Date desc limit "+ limit +"";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
-
-        //printing part
-        System.out.println("+---------------+---------------+---------------+---------------");
-        System.out.println("| Date" + "\t\t\t| Time\t\t" + "\t| Status" + "\t\t| User Name");
-        System.out.println("+---------------+---------------+---------------+---------------");
-
-        while (rs.next()) {
-            System.out.println(
-                    "| " +
-                            rs.getString("Date")+"\t| "+
-                            rs.getString("Time")+"\t\t| "+
-                            rs.getString("Status")+"\t| "+
-                            rs.getString("usedName")+""
-            );
-            c = c + 1;
-        }
-        if (c==0){
-            System.out.println("|\t\t No content found");
-        }
-        System.out.println("+---------------+---------------+---------------+---------------");
+        Analyze2 a2 = new Analyze2();
+        a2.an(q);
 
         //word file
         int i = 0;
@@ -566,51 +468,16 @@ public class Analyze {
     public static void tsch_1() throws SQLException, IOException {
 
         //sql part
-        String q = "SELECT * FROM userlogin limit '"+ limit +"' ";
-        int c = 0;
-        con = connectDB.connect();
-        pst = con.prepareStatement(q);
-        rs = pst.executeQuery();
+        String q = "SELECT * FROM watchvideo where " +cname+ " like '%" +sname+ "%'";
 
-        String[] temp = {"","","","","",""};
 
-        //file generate
-        name = "temp.txt";
-        File f = new File(name);
-        f.createNewFile();
-        FileWriter fw = new FileWriter(name);
-        BufferedWriter fww = new BufferedWriter(fw);
-
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-        fww.write("| Starting Date"  + "\t| Starting Time" + "\t| End Date\t" + "\t| End Time\t" + "\t| Duration\t" + "\t| Video Name\n");
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-
-        while (rs.next()) {
-
-            fww.write(
-                "| " + rs.getString("S_date") +
-                "\t| " + rs.getString("S_time") +
-                "\t\t| " + rs.getString("E_date") +
-                "\t| " + rs.getString("S_time") +
-                "\t\t\t|"+
-                "\t\t| " + rs.getString("VideoName") +
-                "\n"
-            );
-            c = c + 1;
-        }
-
-        if (c==0){
-            fww.write("|\t\t No content found");
-        }
-        fww.write("+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------\n");
-        fww.close();
 
     }
 
     public static void tsch_2() throws SQLException, IOException {
 
         //sql part
-        String q = "SELECT * FROM userlogin where " +cname+ " like \'%" +sname+ "%\'";
+        String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
         int c = 0;
         con = connectDB.connect();
         pst = con.prepareStatement(q);
@@ -673,13 +540,13 @@ public class Analyze {
         while (rs.next()) {
 
             fww.write(
-                    "| " + rs.getString("S_date") +
-                            "\t| " + rs.getString("S_time") +
-                            "\t\t| " + rs.getString("E_date") +
-                            "\t| " + rs.getString("S_time") +
-                            "\t\t\t|"+
-                            "\t\t| " + rs.getString("VideoName") +
-                            "\n"
+                "| " + rs.getString("S_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t| " + rs.getString("E_date") +
+                "\t| " + rs.getString("S_time") +
+                "\t\t\t|"+
+                "\t\t| " + rs.getString("VideoName") +
+                "\n"
             );
             c = c + 1;
         }
@@ -691,7 +558,6 @@ public class Analyze {
         fww.close();
 
     }
-
 
     public static void tl_his() throws SQLException, IOException {
         //sql part

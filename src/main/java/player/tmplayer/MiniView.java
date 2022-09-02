@@ -27,7 +27,6 @@ public class MiniView extends player{
     private JFXSlider playbar;
     private MediaPlayer player;
     int x;
-
     //constructor
     public MiniView() throws SQLException, IOException {
     }
