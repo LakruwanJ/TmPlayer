@@ -499,7 +499,7 @@ public class Analyze extends Analyze2{
     public static void tsch_2() throws SQLException, IOException {
 
         Analyze2 a4 = new Analyze2();
-        String q = "SELECT * FROM watchvideo where " +cname+ " like \'%" +sname+ "%\'";
+        String q = "SELECT * FROM userlogin where " +cname+ " like '%" +sname+ "%'";
         a4.an(q);
 
     }
