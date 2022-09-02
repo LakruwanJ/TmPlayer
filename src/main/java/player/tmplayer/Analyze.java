@@ -183,19 +183,19 @@ public class Analyze extends Analyze2{
         
         if (ana==1){
 
-            q = "SELECT * FROM watchvideo ORDER BY S_time DESC'";
+            q = "SELECT * FROM watchvideo ORDER BY S_time DESC";
 
         } else if (ana==2) {
 
-            q = "SELECT * FROM watchvideo ORDER BY date(S_date) DESC'";
+            q = "SELECT * FROM watchvideo ORDER BY date(S_date) DESC";
 
         } else if (ana==3) {
 
-            q = "SELECT * FROM watchvideo ORDER BY month(S_date) DESC'";
+            q = "SELECT * FROM watchvideo ORDER BY month(S_date) DESC";
 
         } else if (ana==4) {
 
-            q = "SELECT * FROM watchvideo ORDER BY year(S_date) DESC'";
+            q = "SELECT * FROM watchvideo ORDER BY year(S_date) DESC";
 
         } else if (ana==5) {
             // 2 - 5 - Analyze

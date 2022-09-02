@@ -319,7 +319,7 @@ public class player implements Initializable {
         openNew.onlyOpen("MiniView320p.fxml");
     }
 
-    //menu item Analize
+    //menu item Analyze
     public void gotoAnalize() throws IOException {
         modeSet = 1;
         openNew.onlyOpen("Login.fxml");
