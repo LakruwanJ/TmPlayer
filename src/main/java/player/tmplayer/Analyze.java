@@ -183,7 +183,7 @@ public class Analyze extends Analyze2{
         
         if (ana==1){
 
-            q = "SELECT * FROM watchvideo ORDER BY S_ime DESC'";
+            q = "SELECT * FROM watchvideo ORDER BY S_time DESC'";
 
         } else if (ana==2) {
 
@@ -278,7 +278,7 @@ public class Analyze extends Analyze2{
             cname = "VideoName";
             sch_1();
         } else if (sch1_==2){
-            cname = "S_ate";
+            cname = "S_date";
             sch_1();
         }  else if (sch1_==3){
             cname = "S_time";
@@ -322,9 +322,9 @@ public class Analyze extends Analyze2{
 
     public static void sch_1() throws SQLException {
 
-        Analyze2 a2 = new Analyze2();
+        Analyze2 a1 = new Analyze2();
         String q = "SELECT * FROM watchvideo where " + cname + " like \'%" + sname + "%\'";
-        a2.an(q);
+        a1.an(q);
 
         //word file
         int i = 0;
@@ -408,8 +408,8 @@ public class Analyze extends Analyze2{
     public static void w_his() throws SQLException {
 
         String q = "SELECT * FROM watchvideo order by ID desc limit "+limit+"";
-        Analyze2 a2 = new Analyze2();
-        a2.an(q);
+        Analyze2 a1 = new Analyze2();
+        a1.an(q);
 
         //word file
         int i = 0;
