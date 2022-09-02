@@ -202,7 +202,7 @@ public class Analyze extends Analyze2{
             System.out.println(" *----- Details of a hour");
             System.out.print("\nEnter the required hour: ");
             int a = scan.nextInt();
-            q = "SELECT * FROM watchvideo where hour(S_date) = " + a;
+            q = "SELECT * FROM watchvideo where hour(S_time) = " + a;
             System.out.println("\n- - - -------------------------------------------------------------------------+\n");
         } else if (ana==6) {
             // 2 - 6 - Analyze
